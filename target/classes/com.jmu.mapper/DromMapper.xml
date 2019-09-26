@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jmu.mapper.DromMapper">
+  <resultMap id="BaseResultMap" type="com.jmu.domain.Drom">
+    <id column="drom_id" jdbcType="VARCHAR" property="dromId" />
+    <result column="drom_sex" jdbcType="VARCHAR" property="dromSex" />
+    <result column="drom_administ" jdbcType="VARCHAR" property="dromAdminist" />
+    <result column="administ_id" jdbcType="VARCHAR" property="administId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from drom
+    where drom_id = #{dromId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.jmu.domain.Drom">
+    insert into drom (drom_id, drom_sex, drom_administ, 
+      administ_id)
+    values (#{dromId,jdbcType=VARCHAR}, #{dromSex,jdbcType=VARCHAR}, #{dromAdminist,jdbcType=VARCHAR}, 
+      #{administId,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.jmu.domain.Drom">
+    update drom
+    set drom_sex = #{dromSex,jdbcType=VARCHAR},
+      drom_administ = #{dromAdminist,jdbcType=VARCHAR},
+      administ_id = #{administId,jdbcType=VARCHAR}
+    where drom_id = #{dromId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select drom_id, drom_sex, drom_administ, administ_id
+    from drom
+    where drom_id = #{dromId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select drom_id, drom_sex, drom_administ, administ_id
+    from drom
+  </select>
+</mapper>

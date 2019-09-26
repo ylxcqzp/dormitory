@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jmu.mapper.ExchangeMapper">
+  <resultMap id="BaseResultMap" type="com.jmu.domain.Exchange">
+    <id column="exc_id" jdbcType="INTEGER" property="excId" />
+    <result column="stu_id" jdbcType="VARCHAR" property="stuId" />
+    <result column="reason" jdbcType="VARCHAR" property="reason" />
+    <result column="target_drom" jdbcType="VARCHAR" property="targetDrom" />
+    <result column="target_room" jdbcType="VARCHAR" property="targetRoom" />
+    <result column="state" jdbcType="BIT" property="state" />
+    <result column="handle_id" jdbcType="VARCHAR" property="handleId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from exchange
+    where exc_id = #{excId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jmu.domain.Exchange">
+    insert into exchange (exc_id, stu_id, reason, 
+      target_drom, target_room, state, 
+      handle_id)
+    values (#{excId,jdbcType=INTEGER}, #{stuId,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR}, 
+      #{targetDrom,jdbcType=VARCHAR}, #{targetRoom,jdbcType=VARCHAR}, #{state,jdbcType=BIT}, 
+      #{handleId,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.jmu.domain.Exchange">
+    update exchange
+    set stu_id = #{stuId,jdbcType=VARCHAR},
+      reason = #{reason,jdbcType=VARCHAR},
+      target_drom = #{targetDrom,jdbcType=VARCHAR},
+      target_room = #{targetRoom,jdbcType=VARCHAR},
+      state = #{state,jdbcType=BIT},
+      handle_id = #{handleId,jdbcType=VARCHAR}
+    where exc_id = #{excId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select exc_id, stu_id, reason, target_drom, target_room, state, handle_id
+    from exchange
+    where exc_id = #{excId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select exc_id, stu_id, reason, target_drom, target_room, state, handle_id
+    from exchange
+  </select>
+</mapper>

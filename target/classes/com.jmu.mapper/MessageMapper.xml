@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jmu.mapper.MessageMapper">
+  <resultMap id="BaseResultMap" type="com.jmu.domain.Message">
+    <id column="message_id" jdbcType="INTEGER" property="messageId" />
+    <result column="message_title" jdbcType="VARCHAR" property="messageTitle" />
+    <result column="detail" jdbcType="VARCHAR" property="detail" />
+    <result column="creat_time" jdbcType="TIMESTAMP" property="creatTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from message
+    where message_id = #{messageId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jmu.domain.Message">
+    insert into message (message_id, message_title, detail, 
+      creat_time)
+    values (#{messageId,jdbcType=INTEGER}, #{messageTitle,jdbcType=VARCHAR}, #{detail,jdbcType=VARCHAR}, 
+      #{creatTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.jmu.domain.Message">
+    update message
+    set message_title = #{messageTitle,jdbcType=VARCHAR},
+      detail = #{detail,jdbcType=VARCHAR},
+      creat_time = #{creatTime,jdbcType=TIMESTAMP}
+    where message_id = #{messageId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select message_id, message_title, detail, creat_time
+    from message
+    where message_id = #{messageId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select message_id, message_title, detail, creat_time
+    from message
+  </select>
+</mapper>

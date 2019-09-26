@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jmu.mapper.ManagerMapper">
+  <resultMap id="BaseResultMap" type="com.jmu.domain.Manager">
+    <id column="manager_id" jdbcType="VARCHAR" property="managerId" />
+    <result column="manager_name" jdbcType="VARCHAR" property="managerName" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <association property="role" javaType="com.jmu.domain.Role">
+      <result column="role_id" property="roleId"/>
+      <result column="role_name" property="roleName"/>
+      <result column="describe" property="describe"/>
+    </association>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from manager
+    where manager_id = #{managerId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.jmu.domain.Manager">
+    insert into manager (manager_id, manager_name, password, 
+      phone, role_id)
+    values (#{managerId,jdbcType=VARCHAR}, #{managerName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{roleId,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.jmu.domain.Manager">
+    update manager
+    set manager_name = #{managerName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      role_id = #{roleId,jdbcType=INTEGER}
+    where manager_id = #{managerId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select manager_id, manager_name, password, phone, role_id
+    from manager
+    where manager_id = #{managerId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select manager_id, manager_name, password, phone, role_id
+    from manager
+  </select>
+</mapper>

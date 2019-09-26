@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jmu.mapper.LeaveInfoMapper">
+  <resultMap id="BaseResultMap" type="com.jmu.domain.LeaveInfo">
+    <id column="leave_id" jdbcType="INTEGER" property="leaveId" />
+    <result column="stu_id" jdbcType="VARCHAR" property="stuId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="leave_date" jdbcType="TIMESTAMP" property="leaveDate" />
+    <result column="back_date" jdbcType="TIMESTAMP" property="backDate" />
+    <result column="state" jdbcType="BIT" property="state" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from leave_info
+    where leave_id = #{leaveId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jmu.domain.LeaveInfo">
+    insert into leave_info (leave_id, stu_id, create_time, 
+      leave_date, back_date, state
+      )
+    values (#{leaveId,jdbcType=INTEGER}, #{stuId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{leaveDate,jdbcType=TIMESTAMP}, #{backDate,jdbcType=TIMESTAMP}, #{state,jdbcType=BIT}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.jmu.domain.LeaveInfo">
+    update leave_info
+    set stu_id = #{stuId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      leave_date = #{leaveDate,jdbcType=TIMESTAMP},
+      back_date = #{backDate,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=BIT}
+    where leave_id = #{leaveId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select leave_id, stu_id, create_time, leave_date, back_date, state
+    from leave_info
+    where leave_id = #{leaveId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select leave_id, stu_id, create_time, leave_date, back_date, state
+    from leave_info
+  </select>
+</mapper>

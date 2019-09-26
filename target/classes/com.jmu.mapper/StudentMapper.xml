@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jmu.mapper.StudentMapper">
+  <resultMap id="BaseResultMap" type="com.jmu.domain.Student">
+    <result column="stu_id" jdbcType="VARCHAR" property="stuId" />
+    <result column="stu_name" jdbcType="VARCHAR" property="stuName" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="stu_sex" jdbcType="VARCHAR" property="stuSex" />
+    <result column="stu_from" jdbcType="VARCHAR" property="stuFrom" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="stu_date" jdbcType="TIMESTAMP" property="stuDate" />
+    <result column="stu_college" jdbcType="VARCHAR" property="stuCollege" />
+    <result column="stu_major" jdbcType="VARCHAR" property="stuMajor" />
+    <association property="aClass" javaType="com.jmu.domain.Class">
+      <result column="class_id" property="classId"/>
+      <result column="class_name" property="className"/>
+    </association>
+    <association property="drom" javaType="com.jmu.domain.Drom">
+      <result column="drom_id" property="dromId"/>
+      <result column="drom_sex" property="dromSex"/>
+      <result column="drom_administ" property="dromAdminist"/>
+      <association property="manager" javaType="com.jmu.domain.Manager">
+        <result column="manager_id" property="managerId"/>
+        <result column="manager_name" property="managerName"/>
+        <result column="password" property="password"/>
+        <result column="phone" property="phone"/>
+        <association property="role" javaType="com.jmu.domain.Role">
+          <result column="role_id" property="roleId"/>
+          <result column="role_name" property="roleName"/>
+          <result column="describe" property="describe"/>
+        </association>
+      </association>
+    </association>
+    <association property="room" javaType="com.jmu.domain.Room">
+      <result property="roomId" column="room_id"/>
+    </association>
+  </resultMap>
+  <insert id="insert" parameterType="com.jmu.domain.Student">
+    insert into student (stu_id, stu_name, password, 
+      stu_sex, stu_from, phone, 
+      stu_date, stu_college, stu_major, 
+      class_id, drom_id, room_id
+      )
+    values (#{stuId,jdbcType=VARCHAR}, #{stuName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{stuSex,jdbcType=VARCHAR}, #{stuFrom,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{stuDate,jdbcType=TIMESTAMP}, #{stuCollege,jdbcType=VARCHAR}, #{stuMajor,jdbcType=VARCHAR}, 
+      #{aClass.classId,jdbcType=INTEGER}, #{drom.dromId,jdbcType=VARCHAR}, #{room.roomId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from student
+    where stu_id = #{stuId}
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.jmu.domain.Student">
+    update student
+    set stu_name = #{stuName},
+        stu_sex = #{stuSex},
+        stu_from = #{stuFrom},
+        phone = #{phone},
+        stu_date = #{stuDate},
+        class_id = #{aClass.classId}
+    where stu_id = #{stuId}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, stu_name, stu_age
+    from student
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <sql id="where_sql">
+    <where>
+      <if test="keyword !=null and keyword!=''">
+        and s.stu_id like concat('%',#{keyword},'%')
+        or s.stu_name like concat('%',#{keyword},'%')
+        or s.stu_major like concat('%',#{keyword},'%')
+        or c.class_name like concat('%',#{keyword},'%')
+      </if>
+    </where>
+  </sql>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select stu_id, stu_name, password,stu_sex,stu_from,phone,stu_date,stu_college,stu_major,
+           c.class_id class_id,class_name,drom_id,room_id
+    from student as s
+    left join class as c
+    on  s.class_id = c.class_id
+    <include refid="where_sql"/>
+  </select>
+</mapper>

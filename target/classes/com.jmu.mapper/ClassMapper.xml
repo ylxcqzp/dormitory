@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jmu.mapper.ClassMapper">
+  <resultMap id="BaseResultMap" type="com.jmu.domain.Class">
+    <id column="class_id" jdbcType="INTEGER" property="classId" />
+    <result column="class_name" jdbcType="VARCHAR" property="className" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from class
+    where class_id = #{classId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jmu.domain.Class">
+    insert into class (class_id, class_name)
+    values (#{classId,jdbcType=INTEGER}, #{className,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.jmu.domain.Class">
+    update class
+    set class_name = #{className,jdbcType=VARCHAR}
+    where class_id = #{classId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select class_id, class_name
+    from class
+    where class_id = #{classId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select class_id, class_name
+    from class
+  </select>
+</mapper>

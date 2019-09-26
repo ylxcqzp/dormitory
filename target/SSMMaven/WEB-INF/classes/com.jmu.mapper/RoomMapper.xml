@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jmu.mapper.RoomMapper">
+  <resultMap id="BaseResultMap" type="com.jmu.domain.Room">
+    <id column="room_id" jdbcType="VARCHAR" property="roomId" />
+    <id column="drom_id" jdbcType="VARCHAR" property="dromId" />
+    <result column="room_sum" jdbcType="INTEGER" property="roomSum" />
+    <result column="room_use" jdbcType="INTEGER" property="roomUse" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from room
+    where room_id = #{roomId,jdbcType=VARCHAR}
+      and drom_id = #{dromId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.jmu.domain.Room">
+    insert into room (room_id, drom_id, room_sum, 
+      room_use)
+    values (#{roomId,jdbcType=VARCHAR}, #{dromId,jdbcType=VARCHAR}, #{roomSum,jdbcType=INTEGER}, 
+      #{roomUse,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.jmu.domain.Room">
+    update room
+    set room_sum = #{roomSum,jdbcType=INTEGER},
+      room_use = #{roomUse,jdbcType=INTEGER}
+    where room_id = #{roomId,jdbcType=VARCHAR}
+      and drom_id = #{dromId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select room_id, drom_id, room_sum, room_use
+    from room
+    where room_id = #{roomId,jdbcType=VARCHAR}
+      and drom_id = #{dromId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select room_id, drom_id, room_sum, room_use
+    from room
+  </select>
+</mapper>

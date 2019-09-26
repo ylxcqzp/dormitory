@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jmu.mapper.RepairesMapper">
+  <resultMap id="BaseResultMap" type="com.jmu.domain.Repaires">
+    <id column="repairs_id" jdbcType="INTEGER" property="repairsId" />
+    <result column="dorm_id" jdbcType="VARCHAR" property="dormId" />
+    <result column="room_id" jdbcType="VARCHAR" property="roomId" />
+    <result column="describe" jdbcType="VARCHAR" property="describe" />
+    <result column="gettime" jdbcType="TIMESTAMP" property="gettime" />
+    <result column="fixtime" jdbcType="TIMESTAMP" property="fixtime" />
+    <result column="isfixed" jdbcType="BIT" property="isfixed" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from repaires
+    where repairs_id = #{repairsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jmu.domain.Repaires">
+    insert into repaires (repairs_id, dorm_id, room_id, 
+      describe, gettime, fixtime, 
+      isfixed)
+    values (#{repairsId,jdbcType=INTEGER}, #{dormId,jdbcType=VARCHAR}, #{roomId,jdbcType=VARCHAR}, 
+      #{describe,jdbcType=VARCHAR}, #{gettime,jdbcType=TIMESTAMP}, #{fixtime,jdbcType=TIMESTAMP}, 
+      #{isfixed,jdbcType=BIT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.jmu.domain.Repaires">
+    update repaires
+    set dorm_id = #{dormId,jdbcType=VARCHAR},
+      room_id = #{roomId,jdbcType=VARCHAR},
+      describe = #{describe,jdbcType=VARCHAR},
+      gettime = #{gettime,jdbcType=TIMESTAMP},
+      fixtime = #{fixtime,jdbcType=TIMESTAMP},
+      isfixed = #{isfixed,jdbcType=BIT}
+    where repairs_id = #{repairsId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select repairs_id, dorm_id, room_id, describe, gettime, fixtime, isfixed
+    from repaires
+    where repairs_id = #{repairsId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select repairs_id, dorm_id, room_id, describe, gettime, fixtime, isfixed
+    from repaires
+  </select>
+</mapper>

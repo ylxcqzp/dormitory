@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jmu.mapper.ScoreMapper">
+  <resultMap id="BaseResultMap" type="com.jmu.domain.Score">
+    <id column="score_id" jdbcType="INTEGER" property="scoreId" />
+    <result column="score_point" jdbcType="INTEGER" property="scorePoint" />
+    <result column="record_time" jdbcType="TIMESTAMP" property="recordTime" />
+    <result column="drom_id" jdbcType="VARCHAR" property="dromId" />
+    <result column="room_id" jdbcType="VARCHAR" property="roomId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from score
+    where score_id = #{scoreId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jmu.domain.Score">
+    insert into score (score_id, score_point, record_time, 
+      drom_id, room_id)
+    values (#{scoreId,jdbcType=INTEGER}, #{scorePoint,jdbcType=INTEGER}, #{recordTime,jdbcType=TIMESTAMP}, 
+      #{dromId,jdbcType=VARCHAR}, #{roomId,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.jmu.domain.Score">
+    update score
+    set score_point = #{scorePoint,jdbcType=INTEGER},
+      record_time = #{recordTime,jdbcType=TIMESTAMP},
+      drom_id = #{dromId,jdbcType=VARCHAR},
+      room_id = #{roomId,jdbcType=VARCHAR}
+    where score_id = #{scoreId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select score_id, score_point, record_time, drom_id, room_id
+    from score
+    where score_id = #{scoreId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select score_id, score_point, record_time, drom_id, room_id
+    from score
+  </select>
+</mapper>
