@@ -199,7 +199,10 @@ layui.use(['element','table','form','laydate'], function(){
         reload: function () {
             var demoReload = $('#demoReload');
             table.reload('stuTable', {
-                where: {
+                page: {
+                curr: 1 //重新从第 1 页开始
+                }
+                ,where: {
                     keyword: demoReload.val()
                 }
             });

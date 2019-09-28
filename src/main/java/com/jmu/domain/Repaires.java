@@ -18,7 +18,7 @@ public class Repaires {
 
     private Room room;
 
-    private String describe;
+    private String detail;
 
     @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     @DateTimeFormat(pattern = "yyyy-MM-dd")

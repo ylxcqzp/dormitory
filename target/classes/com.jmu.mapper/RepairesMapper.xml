@@ -3,42 +3,53 @@
 <mapper namespace="com.jmu.mapper.RepairesMapper">
   <resultMap id="BaseResultMap" type="com.jmu.domain.Repaires">
     <id column="repairs_id" jdbcType="INTEGER" property="repairsId" />
-    <result column="dorm_id" jdbcType="VARCHAR" property="dormId" />
-    <result column="room_id" jdbcType="VARCHAR" property="roomId" />
-    <result column="describe" jdbcType="VARCHAR" property="describe" />
+    <result column="detail" jdbcType="VARCHAR" property="detail" />
     <result column="gettime" jdbcType="TIMESTAMP" property="gettime" />
     <result column="fixtime" jdbcType="TIMESTAMP" property="fixtime" />
     <result column="isfixed" jdbcType="BIT" property="isfixed" />
+    <association property="drom" javaType="com.jmu.domain.Drom">
+      <result column="drom_id" property="dromId"/>
+    </association>
+    <association property="room" javaType="com.jmu.domain.Room">
+      <result property="roomId" column="room_id"/>
+    </association>
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from repaires
     where repairs_id = #{repairsId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.jmu.domain.Repaires">
-    insert into repaires (repairs_id, dorm_id, room_id, 
-      describe, gettime, fixtime, 
+    insert into repaires (repairs_id, drom_id, room_id,
+    detail, gettime, fixtime,
       isfixed)
-    values (#{repairsId,jdbcType=INTEGER}, #{dormId,jdbcType=VARCHAR}, #{roomId,jdbcType=VARCHAR}, 
-      #{describe,jdbcType=VARCHAR}, #{gettime,jdbcType=TIMESTAMP}, #{fixtime,jdbcType=TIMESTAMP}, 
+    values (#{repairsId,jdbcType=INTEGER}, #{drom_id,jdbcType=VARCHAR}, #{roomId,jdbcType=VARCHAR},
+      #{detail,jdbcType=VARCHAR}, #{gettime,jdbcType=TIMESTAMP}, #{fixtime,jdbcType=TIMESTAMP},
       #{isfixed,jdbcType=BIT})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.jmu.domain.Repaires">
     update repaires
-    set dorm_id = #{dormId,jdbcType=VARCHAR},
+    set drom_id = #{dormId,jdbcType=VARCHAR},
       room_id = #{roomId,jdbcType=VARCHAR},
-      describe = #{describe,jdbcType=VARCHAR},
+      detail = #{detail,jdbcType=VARCHAR},
       gettime = #{gettime,jdbcType=TIMESTAMP},
       fixtime = #{fixtime,jdbcType=TIMESTAMP},
       isfixed = #{isfixed,jdbcType=BIT}
     where repairs_id = #{repairsId,jdbcType=INTEGER}
   </update>
+
+  <update id="updateRepairStatus" parameterType="com.jmu.domain.Repaires">
+    update repaires
+    set fixtime = #{fixtime},
+        isfixed = #{isfixed}
+    where repairs_id = #{repairsId}
+  </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select repairs_id, dorm_id, room_id, describe, gettime, fixtime, isfixed
+    select repairs_id, drom_id, room_id, detail, gettime, fixtime, isfixed
     from repaires
     where repairs_id = #{repairsId,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select repairs_id, dorm_id, room_id, describe, gettime, fixtime, isfixed
+    select repairs_id, drom_id, room_id, detail, gettime, fixtime, isfixed
     from repaires
   </select>
 </mapper>
