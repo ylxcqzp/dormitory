@@ -5,8 +5,12 @@
     <id column="score_id" jdbcType="INTEGER" property="scoreId" />
     <result column="score_point" jdbcType="INTEGER" property="scorePoint" />
     <result column="record_time" jdbcType="TIMESTAMP" property="recordTime" />
-    <result column="drom_id" jdbcType="VARCHAR" property="dromId" />
-    <result column="room_id" jdbcType="VARCHAR" property="roomId" />
+    <association property="drom" javaType="com.jmu.domain.Drom">
+      <result property="dromId" column="drom_id"/>
+    </association>
+    <association property="room" javaType="com.jmu.domain.Room">
+      <result property="roomId" column="room_id"/>
+    </association>
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from score
