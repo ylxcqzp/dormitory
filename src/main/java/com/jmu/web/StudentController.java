@@ -5,6 +5,7 @@ import com.jmu.domain.PageListRes;
 import com.jmu.domain.QueryVo;
 import com.jmu.domain.Student;
 import com.jmu.service.StudentService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
+    @RequiresPermissions("student:index")
     @RequestMapping("/student")
     public String student(){
         return "/part/student";

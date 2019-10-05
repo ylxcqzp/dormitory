@@ -5,6 +5,7 @@ import com.jmu.domain.Manager;
 import com.jmu.domain.PageListRes;
 import com.jmu.domain.QueryVo;
 import com.jmu.service.ManagerService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,7 @@ public class ManagerController {
 
     /*跳转人员管理页面*/
     @RequestMapping("/manager")
+    @RequiresPermissions("manager:index")
     public String manager(){
         return "/part/manager";
     }

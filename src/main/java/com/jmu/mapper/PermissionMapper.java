@@ -13,4 +13,6 @@ public interface PermissionMapper {
     List<Permission> selectAll();
 
     int updateByPrimaryKey(Permission record);
+
+    List<String> selectHrefByRid(Integer roleId);
 }

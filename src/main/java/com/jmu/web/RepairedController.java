@@ -5,6 +5,7 @@ import com.jmu.domain.PageListRes;
 import com.jmu.domain.QueryVo;
 import com.jmu.domain.Repaires;
 import com.jmu.service.RepairedService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ public class RepairedController {
     private RepairedService repairedService;
     /*跳转到报修页面*/
     @RequestMapping("/repaired")
+    @RequiresPermissions("repaire:index")
     public String repaired(){
         return "/part/repaired";
     }

@@ -14,7 +14,7 @@
     <header class="layui-elip">管理员登录</header>
     <form class="layui-form">
         <div class="layui-input-inline">
-            <input type="text" name="managerId" required lay-verify="required" placeholder="用户名" autocomplete="off"
+            <input type="text" name="username" required lay-verify="required" placeholder="用户名" autocomplete="off"
                    class="layui-input">
         </div>
         <div class="layui-input-inline">
@@ -37,7 +37,6 @@
         var form = layui.form;
         var $ = layui.jquery;
         form.on('submit(login)',function (data) {
-            // console.log(data.field);
             $.ajax({
                 url:'/managerLogin',
                 data:data.field,

@@ -31,4 +31,11 @@
     select pid, pname, href
     from permission
   </select>
+
+  <select id="selectHrefByRid" parameterType="java.lang.Integer" resultType="java.lang.String">
+    SELECT href
+    FROM permission
+    WHERE pid
+    IN(SELECT pid FROM role_permission_rel WHERE role_id = #{roleId})
+  </select>
 </mapper>
