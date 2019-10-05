@@ -13,4 +13,6 @@ public interface DromMapper {
     List<Drom> selectAll();
 
     int updateByPrimaryKey(Drom record);
+
+    int updateAdminId(String managerId);
 }

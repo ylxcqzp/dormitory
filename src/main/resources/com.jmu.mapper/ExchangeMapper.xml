@@ -32,6 +32,12 @@
       handle_id = #{handleId,jdbcType=VARCHAR}
     where exc_id = #{excId,jdbcType=INTEGER}
   </update>
+  <update id="updateHandleId" parameterType="java.lang.String">
+    update exchange
+    set handle_id = null
+    where handle_id = #{managerId}
+  </update>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select exc_id, stu_id, reason, target_drom, target_room, state, handle_id
     from exchange

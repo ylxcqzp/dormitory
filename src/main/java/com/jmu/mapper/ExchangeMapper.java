@@ -13,4 +13,6 @@ public interface ExchangeMapper {
     List<Exchange> selectAll();
 
     int updateByPrimaryKey(Exchange record);
+
+    int updateHandleId(String managerId);
 }

@@ -66,13 +66,13 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">学号</label>
                 <div class="layui-input-block">
-                    <input type="text" readonly name="stuId" id="stuId" required  lay-verify="required|number" autocomplete="off" placeholder="请输入学号" class="layui-input">
+                    <input type="text" readonly name="stuId" id="stuId" lay-verify="required|number" autocomplete="off" placeholder="请输入学号" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">姓名</label>
                 <div class="layui-input-block">
-                    <input type="text" name="stuName" id="stuName" required  lay-verify="required" autocomplete="off" placeholder="请输入姓名" class="layui-input">
+                    <input type="text" name="stuName" id="stuName" lay-verify="required" autocomplete="off" placeholder="请输入姓名" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -87,7 +87,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">生源地</label>
                 <div class="layui-input-block">
-                    <input type="text" name="stuFrom" id="stuFrom" required  lay-verify="required" autocomplete="off" class="layui-input">
+                    <input type="text" name="stuFrom" id="stuFrom" lay-verify="required" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -117,7 +117,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">班级</label>
                 <div class="layui-input-block">
-                    <select name="aClass.classId" id="aClass" lay-verify="required" lay-reqText="请选择一个班级" lay-filter="stuSex">
+                    <select name="aClass.classId" id="aClass" lay-verify="required" lay-reqText="请选择一个班级">
                         <option value="">请选择</option>
                     </select>
                 </div>

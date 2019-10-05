@@ -64,7 +64,7 @@
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:;" class="site-url" data-title="学籍信息" data-id="4" data-url="/stu_dorm_lib/student">学籍信息</a></dd>
                         <dd><a href="javascript:;" class="site-url" data-title="宿舍信息" data-id="5" data-url="http://www.tmall.com">宿舍信息</a></dd>
-                        <dd><a href="javascript:;" class="site-url" data-title="管理人员" data-id="6" data-url="http://www.tmall.com">管理人员</a></dd>
+                        <dd><a href="javascript:;" class="site-url" data-title="管理人员" data-id="6" data-url="/stu_dorm_lib/manager">管理人员</a></dd>
                     </dl>
                 </li>d
                 <li class="layui-nav-item"><a href="javascript:;" class="site-url" data-title="报修处理" data-id="7" data-url="/repaired">报修处理</a></li>

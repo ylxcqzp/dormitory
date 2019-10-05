@@ -13,4 +13,8 @@ public interface ManagerMapper {
     List<Manager> selectAll();
 
     int updateByPrimaryKey(Manager record);
+
+    int resetManagerPas(String managerId);
+
+    void updateManagerRid(Manager manager);
 }

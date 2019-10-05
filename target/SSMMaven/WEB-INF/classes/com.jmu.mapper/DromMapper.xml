@@ -24,6 +24,13 @@
       administ_id = #{administId,jdbcType=VARCHAR}
     where drom_id = #{dromId,jdbcType=VARCHAR}
   </update>
+
+  <update id="updateAdminId" parameterType="java.lang.String">
+    update drom
+    set administ_id = null
+    where administ_id = #{managerId}
+  </update>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select drom_id, drom_sex, drom_administ, administ_id
     from drom
