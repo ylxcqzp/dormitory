@@ -12,7 +12,25 @@
     <title>学生管理首页</title>
     <link href="../.././layui/css/bootstrap.min.css" rel="stylesheet">
     <link href="../.././layui/css/css.css" rel="stylesheet">
+    <script src="../.././layui/js/jquery.min.js"></script>
 </head>
+<script>
+    $(function () {
+        $.ajax({
+            url:'/student/getUser',
+            dataType:'JSON',
+            type:'post',
+            success:function (data) {
+                console.log(data);
+                if(data){
+                    $("#user").text(data.stuName);
+                }else {
+                    $("#user").text("未知用户");
+                }
+            }
+        });
+    })
+</script>
 <body>
 <div class="bg"><img src="../.././layui/images/timg.jpg" /></div>
 <!--header start-->
@@ -24,7 +42,7 @@
             </a>
         </h1>
         <div class="phone">
-            欢迎你，
+            欢迎你，<span id="user"></span>
         </div><!--phone/-->
     </div><!--top/-->
 </div>
@@ -100,7 +118,7 @@
 
 </div>
 
-<script src="../.././layui/js/jquery.min.js"></script>
+
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="../.././layui/js/bootstrap.min.js"></script>
 <script src="../.././layui/js/js.js"></script>

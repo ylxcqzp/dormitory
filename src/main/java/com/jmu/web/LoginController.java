@@ -13,8 +13,6 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
-
-
     @RequestMapping("/managerLogin")
     public String managerLogin(){
         System.out.println("重定向");
