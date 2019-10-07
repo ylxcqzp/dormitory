@@ -3,12 +3,18 @@
 <mapper namespace="com.jmu.mapper.ExchangeMapper">
   <resultMap id="BaseResultMap" type="com.jmu.domain.Exchange">
     <id column="exc_id" jdbcType="INTEGER" property="excId" />
-    <result column="stu_id" jdbcType="VARCHAR" property="stuId" />
+
     <result column="reason" jdbcType="VARCHAR" property="reason" />
     <result column="target_drom" jdbcType="VARCHAR" property="targetDrom" />
     <result column="target_room" jdbcType="VARCHAR" property="targetRoom" />
     <result column="state" jdbcType="BIT" property="state" />
-    <result column="handle_id" jdbcType="VARCHAR" property="handleId" />
+
+    <association property="student" javaType="com.jmu.domain.Student">
+      <result property="stuId" column="stu_id"/>
+    </association>
+    <association property="manager" javaType="com.jmu.domain.Manager">
+      <result property="managerId" column="manager_id"/>
+    </association>
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from exchange
@@ -44,7 +50,7 @@
     where exc_id = #{excId,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select exc_id, stu_id, reason, target_drom, target_room, state, handle_id
+    select exc_id, stu_id, reason, target_drom, target_room, state, manager_id
     from exchange
   </select>
 </mapper>

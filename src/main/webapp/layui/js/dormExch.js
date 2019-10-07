@@ -31,13 +31,13 @@ layui.use(['element','table','form','laydate'],function () {
         ,loading:true
         ,cols: [[ //表头
             {type: 'checkbox', fixed: 'left'}
-            ,{field: 'exc_id', title: '宿舍请求编号', fixed: 'left'}
-            ,{field: 'stu_id', title: '学生编号'}
+            ,{field: 'excId', title: '宿舍请求编号', fixed: 'left'}
+            ,{field: 'student', title: '学生编号',templet:'<span>{{d.student.stuId}}</span>'}
             ,{field: 'reason', title: '原因'}
-            ,{field: 'target_drom', title: '目标宿舍楼'}
-            ,{field: 'target_room', title: '目标宿舍号'}
+            ,{field: 'targetDrom', title: '目标宿舍楼'}
+            ,{field: 'targetRoom', title: '目标宿舍号'}
             ,{field: 'state', title: '状态'}
-            ,{field: 'handle_id', title: '审批人编号'}
+            ,{field: 'manager', title: '审批人编号',templet:'<span>{{d.manager.managerId}}</span>'}
             ,{fixed: 'right', title:'操作', toolbar: '#dormOption', width:150}
         ]]
 

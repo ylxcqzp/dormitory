@@ -61,11 +61,6 @@
         class_id = #{aClass.classId}
     where stu_id = #{stuId}
   </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select id, stu_name, stu_age
-    from student
-    where id = #{id,jdbcType=INTEGER}
-  </select>
 
   <sql id="where_sql">
     <where>
@@ -84,5 +79,10 @@
     left join class as c
     on  s.class_id = c.class_id
     <include refid="where_sql"/>
+  </select>
+  <select id="getStudentById" resultMap="BaseResultMap">
+    select stu_id,password
+    from student
+    where stu_id=#{stuId}
   </select>
 </mapper>

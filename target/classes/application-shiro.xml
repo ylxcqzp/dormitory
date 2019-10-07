@@ -46,6 +46,9 @@
             <value>
                 /layui/** = anon  <!--放行请求-->
                 /views/login/manager_login.jsp = anon
+                /views/login/student_login.jsp = anon
+                /views/index/student_index.jsp = anon
+                /student/** = anon
                 /index.jsp = anon
                 /=anon
                 /logout = logout   <!--取消认证-->

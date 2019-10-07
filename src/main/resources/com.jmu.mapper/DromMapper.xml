@@ -5,7 +5,10 @@
     <id column="drom_id" jdbcType="VARCHAR" property="dromId" />
     <result column="drom_sex" jdbcType="VARCHAR" property="dromSex" />
     <result column="drom_administ" jdbcType="VARCHAR" property="dromAdminist" />
-    <result column="administ_id" jdbcType="VARCHAR" property="administId" />
+
+    <association property="manager" javaType="com.jmu.domain.Manager">
+      <result property="managerId" column="manager_id"/>
+    </association>
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from drom

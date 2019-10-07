@@ -1,15 +1,19 @@
 package com.jmu.service;
 
-import com.jmu.domain.PageListRes;
-import com.jmu.domain.QueryVo;
-import com.jmu.domain.Score;
+import com.jmu.domain.*;
+
+import java.util.List;
 
 public interface ScoreService {
     public PageListRes getAllScore(QueryVo vo);
 
-    void delScoById(String scoreId);
-
     void updateScore(Score score);
 
     void addScore(Score score);
+
+    void delScoById(Integer scoreId);
+
+    List<Drom> getAllDorm();
+
+    List<Room> getAllRoom();
 }

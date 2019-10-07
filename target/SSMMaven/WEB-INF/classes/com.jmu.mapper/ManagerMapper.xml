@@ -11,6 +11,7 @@
       <result column="role_name" property="roleName"/>
       <result column="detail" property="detail"/>
     </association>
+
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from manager

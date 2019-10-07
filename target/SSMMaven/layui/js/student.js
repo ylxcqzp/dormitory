@@ -141,7 +141,7 @@ layui.use(['element','table','form','laydate'], function(){
         } else if(obj.event === 'edit'){
             /*调用函数： 数据回显*/
             getClassList(obj);
-            $('#stuId').attr("readonly","readonly");
+            $('#stuId').attr("readonly",false);
             $('#college').css('display','none');
             $('#major').css('display','none');
             EidtUv(data);
@@ -152,6 +152,7 @@ layui.use(['element','table','form','laydate'], function(){
             });
 
         }
+
         function  EidtUv(data) {
             $("#stuId").val(data.stuId);
             $("#stuName").val(data.stuName);
@@ -161,7 +162,6 @@ layui.use(['element','table','form','laydate'], function(){
             $("#stuDate").val(data.stuDate);
             form.render('select');
         }
-
 
 
 

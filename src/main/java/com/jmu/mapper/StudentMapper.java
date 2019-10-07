@@ -14,4 +14,6 @@ public interface StudentMapper {
     int deleteByPrimaryKey(@Param("stuId") String stuId);
 
     void updateByPrimaryKey(Student student);
+
+    Student getStudentById(String stuId);
 }

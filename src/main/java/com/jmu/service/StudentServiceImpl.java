@@ -16,6 +16,13 @@ import java.util.List;
 public class StudentServiceImpl implements StudentService {
     @Autowired
     private StudentMapper studentMapper;
+
+    @Override
+    public Student getStudentById(String stuId) {
+       Student student= studentMapper.getStudentById(stuId);
+        return student;
+    }
+
     @Override
     public PageListRes getAllStudent(QueryVo vo) {
         Page<Student> page = PageHelper.startPage(vo.getPage(), vo.getLimit());

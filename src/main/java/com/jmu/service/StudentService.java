@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface StudentService {
 
+    public Student getStudentById(String stuId);
+
     public PageListRes getAllStudent(QueryVo vo);
 
     void delStudentById(String stuId);

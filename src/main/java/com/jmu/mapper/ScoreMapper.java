@@ -5,7 +5,7 @@ import com.jmu.domain.Score;
 import java.util.List;
 
 public interface ScoreMapper {
-    int deleteByPrimaryKey(String scoreId);
+    int deleteByPrimaryKey(Integer scoreId);
 
     int insert(Score record);
 

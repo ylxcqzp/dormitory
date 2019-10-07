@@ -33,7 +33,7 @@
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
-大苏打
+
 <%--宿舍表--%>
 <div id="dormTable" lay-filter="dormTable"></div>
 <script src="../.././layui/js/dormExch.js"></script>

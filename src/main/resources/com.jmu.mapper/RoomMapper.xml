@@ -3,9 +3,11 @@
 <mapper namespace="com.jmu.mapper.RoomMapper">
   <resultMap id="BaseResultMap" type="com.jmu.domain.Room">
     <id column="room_id" jdbcType="VARCHAR" property="roomId" />
-    <id column="drom_id" jdbcType="VARCHAR" property="dromId" />
     <result column="room_sum" jdbcType="INTEGER" property="roomSum" />
     <result column="room_use" jdbcType="INTEGER" property="roomUse" />
+    <association property="drom" javaType="com.jmu.domain.Drom">
+      <result property="dromId" column="drom_id"/>
+    </association>
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="map">
     delete from room

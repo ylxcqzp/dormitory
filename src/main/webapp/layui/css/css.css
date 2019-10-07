@@ -1,0 +1,227 @@
+@charset "utf-8";
+/* CSS Document */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, select{margin: 0;padding: 0;border: 0; font-family:"微软雅黑";}
+table{ border-collapse:collapse;}
+body{background:url(../images/1600.jpg) left top;}
+
+/*bg*/
+.logo2{ display:none;}
+.bg{position:absolute;
+z-index:-1;
+left:0;
+top:0;
+width:100%;
+height:100%;
+overflow:hidden;
+}
+.bg img{
+	width:100%;
+	height:auto;
+	}
+	
+/*header*/	
+.header{
+	width:100%;
+	height:50px;
+	background:#1c1c1c;
+	}	
+.top{
+	width:95%;
+	margin:0 auto;
+	}	
+.logo{ 
+float:left;
+width:163px;
+height:82px;
+}	
+.phone{
+	float:right;
+	width:175px;
+	height:50px;
+	line-height:50px;
+	font-size:1em;
+	color:#fff;
+	text-align:right;
+	white-space:nowrap;
+	}
+
+/*mainCont*/	
+.mainCont{
+	width:80%;
+	padding-top:7%;
+	margin:0px auto;
+	}	
+.nav{padding-left:20px;
+	width:930px;
+	margin:0 auto;
+	}
+.nav li{
+	float:left;
+	}
+.nav li.nav-Index{width:170px;height:400px;display:none;}/*首页板块默认不显示*/	
+.nav li.nav-About{width:170px;height:400px;}
+.nav li.nav-Products{width:151px;height:356px;margin:19px 30px 0 30px;}
+.nav li.nav-News{width:129px;height:320px;margin:38px 0 0 0;}
+.nav li.nav-shopping{width:151px;height:356px;margin:19px 30px 0 30px;}
+.nav li.nav-Contact{width:170px;height:400px;}
+.nav li a{
+	display:block;
+	width:100%;
+	height:100%;
+	position:relative;
+	padding:0;
+	color:#fff;
+	}	
+.nav li a:hover{
+	background:0;
+	font-weight:bold;
+	}	
+.nav li span,.nav li strong{
+	position:absolute;
+	font-weight:400;
+	z-index:99;
+	}
+.nav li span{ overflow:hidden;}
+.nav li.nav-Index span{}
+.nav li.nav-About span{width:170px;height:400px;}
+.nav li.nav-Products span{width:151px;height:356px;}
+.nav li.nav-News span{width:129px;height:320px;}
+.nav li.nav-shopping span{width:151px;height:356px;}
+.nav li.nav-Contact span{width:170px;height:400px;}						
+.nav img{ position:absolute;}			
+.nav li strong{
+	font-size:1.2em;
+	line-height:17px;
+	left:16px;
+	}
+.nav li.nav-About strong{top:20%;}
+.nav li.nav-Products strong{top:13%;}
+.nav li.nav-News strong{top:5%;}
+.nav li.nav-shopping strong{top:13%;}
+.nav li.nav-Contact strong{top:20%;}				
+.nav li.nav-News strong{width:99%;left:0; text-align:center;}	
+/*jq控制  鼠标经过改变距离上的位置*/		
+.nav li strong i{ font-style:normal; font-size:0.6em;}				
+.nav img{ position:absolute;z-index:3;}	
+/*图片变灰色*/
+ /*jq控制  鼠标经过改为彩色 图片变大*/		
+.nav img.grayscale {
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 3.5+ */
+    filter: gray; /* IE6-9 */
+    -webkit-filter: grayscale(100%); /* Chrome 19+ & Safari 6+ */margin:0;
+}	
+
+/*footer*/
+.footer{ position:absolute;left:0;bottom:0;width:100%;height:50px;font-size:.8em;color:#fff; background:#1c1c1c;line-height:50px; text-align:center;}
+.footer a{color:#999;}
+.footer a:hover{color:#f00;}
+
+/*音乐*/
+.musics{width:0;height:0; overflow:hidden; position:absolute;left:0;top:0; display:none;}	
+
+/*客服代码*/
+.kefu{ position:fixed;width:20%;padding:1em;color:#fff; top:20%;left:-200%; background:#000;z-index:999; display:none;}
+.contactClick{ display:block; background:#018E87;width:30px; text-align:center;padding:0.5em 0; cursor:pointer; position:absolute;right:-44px;top:0px;line-height:20px; }
+.contactClick:hover{ background:#036A64;}
+.kefuBOx{ position:relative;width:100%;line-height:25px;}
+.cc1{ display:block; background:#f30;width:30px; text-align:center;padding:0.5em 0; cursor:pointer; position:fixed;left:0;top:20%;line-height:20px;color:#fff;z-index:999;display:none;}
+.cc1:hover{ background:#900;}	
+/*---------------响应式控制-----------------*/
+@media screen and (min-width: 1600px){
+	body{background:url(../images/1920.jpg) left top;}
+	}
+	
+/*此样式在窗口1367-1440的时候生效*/
+@media only screen and (min-width: 1367px) and (max-width: 1440px) {
+.top{width:95%;}	
+body{background:url(../images/1440.jpg) left top;}
+}
+/*此样式在窗口小于1281-1366的时候生效*/
+@media only screen and (min-width: 1281px) and (max-width: 1366px){
+.top,.mainCont{width:94%;}	
+body{background:url(../images/1366.jpg) left top;}
+.mainCont{padding-top:5%;}
+}
+/*此样式在窗口小于1500的时候生效*/
+@media screen and (max-width: 1500px) {
+.bg{ display:none;}
+}
+/*此样式在窗口小于1366的时候生效*/
+@media screen and (max-width: 1300px) {
+.top,.mainCont{width:94%;}		
+body{background:url(../images/1280.jpg) left top;}
+}
+
+/*此样式在窗口小于1280的时候生效*/
+@media screen and (max-width: 1280px) {
+.top,.mainCont{width:99%;}	
+.kefu{ position:fixed;width:40%;}
+}	
+/*此样式在窗口小于990的时候生效*/
+@media screen and (max-width: 990px) {
+.mainCont{ padding-top:10%;}	
+#nav{width:620px;}	
+/*改变nav li宽度*/	
+
+.nav li img{ width:100%; height:auto !important;}
+.nav li.nav-About{width:120px;height:280px;}
+.nav li.nav-Products{width:105px;height:235px;margin:15px 5px 0 5px;}
+.nav li.nav-News{width:98px;height:225px;margin:27px 0 0 0;}
+.nav li.nav-shopping{width:105px;height:235px;margin:15px 5px 0 5px;}
+.nav li.nav-Contact{width:120px;height:280px;}
+
+.nav li.nav-About span{width:120px;height:300px;}
+.nav li.nav-Products span{width:105px;height:255px;}
+.nav li.nav-News span{width:98px;height:225px;}
+.nav li.nav-shopping span{width:105px;height:255px;}
+.nav li.nav-Contact span{width:120px;height:300px;}
+}	
+/*此样式在窗口小于820-620的时候生效
+@media only screen and (min-width:620px) and (max-width: 820px){
+	.mainCont{width:120%;}	
+}*/
+/*此样式在窗口小于640的时候生效*/
+@media screen and (max-width: 620px) {
+.logo{height:50px;}
+.logo img{height:50px; width:auto !important;}
+
+.footer{ position:static;margin-top:20px;line-height:25px;}
+.kefu{ position:fixed;width:60%;}
+.logo2{ display:block;}
+.logo1{ display:none;}
+}	
+/*此样式在窗口小于480的时候生效*/
+@media screen and (max-width: 480px) {
+.phone{width:145px; font-size:.8em;}	
+#nav{width:100%;}
+#nav li{width:50%;height:200px;margin:0;padding:0 0 0 1em;margin-top:1em;}
+#nav li span{width:100%;height:200px;}
+#nav li.nav-Index strong{top:20%;}
+#nav li span img{width:100%;top:-10%;}
+.nav li.nav-Index{ display:inline-block;}
+.nav img.grayscale{-webkit-filter: grayscale(0%);}
+.cc1{ opacity:.3;}
+}	
+
+/*此样式在高度大于900的时候生效*/
+@media screen and (min-height: 880px) {	
+/*body{background:url(../images/height-900.jpg) left top;}*/
+.mainCont{padding-top:10%;}
+}	
+	
+/*此样式在高度小于600的时候生效*/
+@media screen and (max-height: 620px) {	
+body{background:url(../images/1366-2.jpg) left top;}
+.mainCont{padding-top:10%;}
+.footer{ position:static;margin-top:20px;line-height:25px;}
+}
+/*此样式在高度小于590的时候生效*/
+@media screen and (max-height: 550px) {	
+.mainCont{padding-top:10%;}
+}	
+
+	
+	
+	
+	
+	

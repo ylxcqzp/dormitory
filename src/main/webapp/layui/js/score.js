@@ -5,6 +5,13 @@ layui.use(['element','table','form','laydate'],function () {
         ,laydate = layui.laydate
         ,$ = layui.jquery;
 
+    /*日期渲染*/
+    laydate.render({
+        elem: '#recordTime'
+        ,format: 'yyyy-MM-dd' //可任意组合
+        ,theme: 'grid'
+        ,trigger: 'click'
+    });
     /*数据表格初始化*/
     table.render({
         elem:'#scoreTable'
@@ -38,4 +45,169 @@ layui.use(['element','table','form','laydate'],function () {
             ,{fixed: 'right', title:'操作', toolbar: '#scoreOption', width:150}
         ]]
 
-    });})
+    })
+
+    /*获取所有宿舍信息，渲染班级下拉框*/
+    function getDormList(obj) {
+
+        $.ajax({
+            url: '/dormManager/getDormList',
+            type: 'POST',
+            dataype: 'json',
+            success: function (result) {
+                $('#Drom').html("<option value=''>请选择</option>");
+                $.each(result,function(index,item){
+                    if(obj.hasOwnProperty('data')){
+                        if(item.dromId!=obj.data.Drom.dromId){
+                            $('#Drom').append("<option value='"+item.dromId+"'>"+item.dromId+"</option>");//往下拉菜单里添加元素
+                        }else{
+                            $('#Drom').append("<option value='"+item.dromId+"' selected>"+item.dromId+"</option>");//往下拉菜单里添加元素
+                        }
+                    }else {
+                        $('#Drom').append("<option value='"+item.dromId+"'>"+item.dromId+"</option>");//往下拉菜单里添加元素
+                    }
+
+                });
+                form.render();//菜单渲染 把内容加载进去
+            }
+        });
+    }
+    function getRoomList(obj) {
+        $.ajax({
+            url: '/dormManager/getRoomList',
+            type: 'POST',
+            dataype: 'json',
+            success: function (result) {
+                $('#Room').html("<option value=''>请选择</option>");
+                var each = $.each(result,function(index, item){
+                    if(obj.hasOwnProperty('data')) {
+                        if(item.roomId!=obj.data.Room.roomId){
+                            $('#Room').append("<option value='"+item.roomId+"'>"+item.roomId+"</option>");//往下拉菜单里添加元素
+                        }else{
+                            $('#Room').append("<option value='"+item.roomId+"' selected>"+item.roomId+"</option>");//往下拉菜单里添加元素
+                        }
+                    }else {
+                        $('#Room').append("<option value='"+item.roomId+"'>"+item.roomId+"</option>");//往下拉菜单里添加元素
+                    }
+
+                });
+                form.render();//菜单渲染 把内容加载进去
+            }
+        });
+    }
+    //头工具栏事件
+    table.on('toolbar(scoreTable)', function(obj){
+
+        var checkStatus = table.checkStatus(obj.config.id);
+        switch(obj.event){
+            case 'AddSco':
+                $('#form_reset')[0].reset();
+                $('#scorePoint').attr("readonly",false);
+                $('#recordTime').attr("readonly",true);
+                $("#Drom").val("请选择");
+                getDormList(obj);
+                $("#Room").val("请选择");
+                getRoomList(obj);
+                form.render();
+                /*打开表单*/
+                var index = layer.open({
+                    type: 1
+                    , area: ['400px', '520px']
+                    , content: $("#scoForm")
+                });
+                break;
+            case 'reload'://刷新数据表格
+                table.reload('scoreTable', {
+                    where: {
+                        keyword: ""
+                    }
+                });
+                break;
+            //自定义头工具栏右侧图标 - 提示
+            case 'LAYTABLE_TIPS':
+                layer.alert('这是工具栏右侧自定义的一个图标按钮');
+                break;
+        }
+    });
+
+
+
+
+    //监听行工具事件
+    table.on('tool(scoreTable)', function(obj){//注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+        var data = obj.data;//获得当前行数据
+        if(obj.event === 'del'){//获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+            layer.confirm('真的要删除该条信息吗？', function(index){
+                layer.close(index);
+                //向服务端发送删除指令；这里可以是发送ajax请求
+                $.ajax({
+                    url:'/dormManager/scoreDel',
+                    data:"scoreId="+data.scoreId,
+                    dataType:'JSON',
+                    type:'post',
+                    success:function (data) {
+                        if (data.success){
+                            obj.del();
+                            layer.msg(data.msg);
+                            /*table.reload('stuTable');*/
+                        }else{
+                            layer.msg(data.msg);
+                        }
+                    }
+                });
+            });
+        } else if(obj.event === 'edit'){
+            /*调用函数： 数据回显*/
+            getDormList(obj);
+            getRoomList(obj);
+            EidtUv(data);
+            index = layer.open({
+                type:1
+                ,area:['400px', '520px']
+                ,content:$("#scoForm")
+            });
+
+        }
+        function  EidtUv(data) {
+            function  EidtUv(data) {
+                $("#scorePoint").val(data.scorePoint);
+                $("#recordTime").val(data.recordTime);
+                $("#scoForm").val(data.scoForm);
+                form.render('select');
+            }
+            form.render('select');
+        }
+
+
+    });
+
+
+    /*监听表单提交按钮*/
+    form.on('submit(scoForm)',function (data) {
+        var url = '';
+        var tag = $("#recordTime").attr("readonly");
+        if(tag == 'readonly'){
+            url = '/dormManager/scoAdd';
+        }else {
+            url = '/dormManager/scoEdit';
+        }
+
+        $.ajax({
+            url:url,
+            data:data.field,
+            dataType:'JSON',
+            type:'post',
+            success:function (data) {
+                if (data.success){
+                    layer.close(index);
+                    layer.msg(data.msg);
+                    table.reload('scoreTable');
+                }else{
+                    layer.msg(data.msg);
+                }
+            }
+        });
+        return false;
+    });
+    ;})
+

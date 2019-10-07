@@ -2,9 +2,9 @@ package com.jmu.service;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.jmu.domain.PageListRes;
-import com.jmu.domain.QueryVo;
-import com.jmu.domain.Score;
+import com.jmu.domain.*;
+import com.jmu.mapper.DromMapper;
+import com.jmu.mapper.RoomMapper;
 import com.jmu.mapper.ScoreMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +17,10 @@ import java.util.List;
 public class ScoreServiceImpl implements ScoreService {
     @Autowired
     private ScoreMapper scoreMapper;
-
+    @Autowired
+    private DromMapper dromMapper;
+    @Autowired
+    private RoomMapper roomMapper;
     @Override
     public PageListRes getAllScore(QueryVo vo) {
         Page<Score> page = PageHelper.startPage(vo.getPage(), vo.getLimit());
@@ -36,7 +39,7 @@ public class ScoreServiceImpl implements ScoreService {
     }
 
     @Override
-    public void delScoById(String scoreId) {
+    public void delScoById(Integer scoreId) {
         scoreMapper.deleteByPrimaryKey(scoreId);
     }
 
@@ -49,4 +52,20 @@ public class ScoreServiceImpl implements ScoreService {
     public void addScore(Score score) {
         scoreMapper.insert(score);
     }
+
+
+
+    @Override
+    public List<Drom> getAllDorm() {
+        List<Drom> dorms = dromMapper.selectAll();
+        return dorms;
+    }
+
+    @Override
+    public List<Room> getAllRoom() {
+        List<Room> rooms = roomMapper.selectAll();
+        return rooms;
+    }
+
+
 }
