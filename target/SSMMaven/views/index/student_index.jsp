@@ -16,7 +16,6 @@
 </head>
 <script>
     $(function () {
-        alert("hello");
         $.ajax({
             url:'/student/getUser',
             dataType:'JSON',
@@ -24,9 +23,9 @@
             success:function (data) {
                 console.log(data);
                 if(data){
-                    $("#userName").innerText = data.stuName;
+                    $("#user").text(data.stuName);
                 }else {
-                    $("#userName").innerText = '未知用户';
+                    $("#user").text("未知用户");
                 }
             }
         });
@@ -43,7 +42,7 @@
             </a>
         </h1>
         <div class="phone">
-            欢迎你，<span id="userName"></span>
+            欢迎你，<span id="user"></span>
         </div><!--phone/-->
     </div><!--top/-->
 </div>

@@ -43,7 +43,11 @@
     set handle_id = null
     where handle_id = #{managerId}
   </update>
-
+  <update id="updateChangeStatus" parameterType="com.jmu.domain.Exchange">
+    update exchange
+    set state = #{state},
+    where exc_id = #{excId}
+  </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select exc_id, stu_id, reason, target_drom, target_room, state, handle_id
     from exchange
@@ -53,4 +57,6 @@
     select exc_id, stu_id, reason, target_drom, target_room, state, manager_id
     from exchange
   </select>
+
+
 </mapper>

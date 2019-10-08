@@ -81,7 +81,7 @@
     <include refid="where_sql"/>
   </select>
   <select id="getStudentById" resultMap="BaseResultMap">
-    select stu_id,password
+    select stu_id,stu_name,password,stu_sex
     from student
     where stu_id=#{stuId}
   </select>
