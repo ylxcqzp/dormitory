@@ -14,6 +14,8 @@ public class LeaveInfo {
 
     private Student student;
 
+    private String reasons;
+
     private Date createTime;
 
     @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")

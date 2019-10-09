@@ -52,4 +52,14 @@ public class StudentLoginController {
         Student user = (Student) session.getAttribute("user");
         return user;
     }
+
+    /*用户登出*/
+    @RequestMapping("/logout")
+    @ResponseBody
+    public String logout(){
+        System.out.println("清楚用户数据");
+        HttpSession session = request.getSession();
+        session.removeAttribute("user");
+        return "success";
+    }
 }

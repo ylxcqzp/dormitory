@@ -13,4 +13,6 @@ public interface LeaveInfoMapper {
     List<LeaveInfo> selectAll();
 
     int updateByPrimaryKey(LeaveInfo record);
+
+    int updateState(LeaveInfo leaveInfo);
 }

@@ -3,11 +3,15 @@
 <mapper namespace="com.jmu.mapper.LeaveInfoMapper">
   <resultMap id="BaseResultMap" type="com.jmu.domain.LeaveInfo">
     <id column="leave_id" jdbcType="INTEGER" property="leaveId" />
-    <result column="stu_id" jdbcType="VARCHAR" property="stuId" />
+    <result column="reasons" property="reasons"/>
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="leave_date" jdbcType="TIMESTAMP" property="leaveDate" />
     <result column="back_date" jdbcType="TIMESTAMP" property="backDate" />
     <result column="state" jdbcType="BIT" property="state" />
+    <association property="student" javaType="com.jmu.domain.Student">
+      <result column="stu_id" property="stuId"/>
+      <result column="stu_Name" property="stuName"/>
+    </association>
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from leave_info
@@ -30,13 +34,21 @@
       state = #{state,jdbcType=BIT}
     where leave_id = #{leaveId,jdbcType=INTEGER}
   </update>
+
+  <update id="updateState" parameterType="com.jmu.domain.LeaveInfo">
+    update leave_info
+    set state = #{state}
+    where leave_id = #{leaveId}
+  </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select leave_id, stu_id, create_time, leave_date, back_date, state
     from leave_info
     where leave_id = #{leaveId,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select leave_id, stu_id, create_time, leave_date, back_date, state
-    from leave_info
+    select leave_id, l.stu_id,stu_name,reasons, create_time, leave_date, back_date, state
+    from leave_info l
+    left join student s
+    on l.stu_id = s.stu_id
   </select>
 </mapper>

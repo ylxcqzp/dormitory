@@ -48,6 +48,7 @@
                 /views/login/manager_login.jsp = anon
                 /views/login/student_login.jsp = anon
                 /views/index/student_index.jsp = anon
+                /views/student/** = anon
                 /student/** = anon
                 /index.jsp = anon
                 /=anon

@@ -16,21 +16,33 @@
 </head>
 <script>
     $(function () {
-        alert("hello");
         $.ajax({
             url:'/student/getUser',
             dataType:'JSON',
             type:'post',
             success:function (data) {
-                console.log(data);
                 if(data){
-                    $("#userName").innerText = data.stuName;
+                    $("#user").text(data.stuName);
                 }else {
-                    $("#userName").innerText = '未知用户';
+                    location.href = "../login/student_login.jsp";
                 }
             }
         });
-    })
+    });
+
+    function userLogout() {
+        $.ajax({
+            url:'/student/logout',
+            type:'post',
+            success:function (data) {
+                if(data){
+                    location.href = "../login/student_login.jsp";
+                }else {
+                    alert("失败");
+                }
+            }
+        });
+    }
 </script>
 <body>
 <div class="bg"><img src="../.././layui/images/timg.jpg" /></div>
@@ -43,7 +55,8 @@
             </a>
         </h1>
         <div class="phone">
-            欢迎你，<span id="userName"></span>
+            欢迎你，<span id="user"></span>
+            <span style="margin-left: 10px"><a href="javascript:userLogout()">退出</a></span>
         </div><!--phone/-->
     </div><!--top/-->
 </div>
@@ -105,11 +118,11 @@
             <a href="contact.html">
                 <span><img src="../.././layui/images/contactimg.png" class="grayscale"></span>
                 <strong>
-                    其他<br />
-                    <i>Others</i>
+                    报修<br />
+                    <i>repair</i>
                 </strong>
             </a>
-            <div class="musics"><embed src=mp3/m1_clip.mp3 autostart=true loop=true width=0 height=0></div>
+
         </li>
     </ul><!--nav/-->
 </div>
