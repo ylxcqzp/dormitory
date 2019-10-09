@@ -17,7 +17,7 @@
 
 <div class="layui-btn-container" id="changeToolBar">
     <button class="layui-btn layui-btn-sm3" data-type="delete">删除</button>
-    <button class="layui-btn layui-btn-sm3" data-type="statusChange">更改状态</button>
+    <button class="layui-btn layui-btn-sm3" data-type="statusChange">处理</button>
 
 </div>
 <script type="text/html" id="toolbarDom">

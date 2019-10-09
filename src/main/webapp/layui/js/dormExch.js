@@ -83,7 +83,7 @@ layui.use(['element','table','form','laydate'],function () {
                 return;
             }
             if(data[0].state){
-                layer.alert("不能将状态修改为未修");
+                layer.alert("不能修改已处理信息！");
                 return;
             }
             $.ajax({

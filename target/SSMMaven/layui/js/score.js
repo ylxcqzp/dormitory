@@ -97,7 +97,6 @@ layui.use(['element','table','form','laydate'],function () {
     }
     //头工具栏事件
     table.on('toolbar(scoreTable)', function(obj){
-
         var checkStatus = table.checkStatus(obj.config.id);
         switch(obj.event){
             case 'AddSco':
@@ -129,10 +128,6 @@ layui.use(['element','table','form','laydate'],function () {
                 break;
         }
     });
-
-
-
-
     //监听行工具事件
     table.on('tool(scoreTable)', function(obj){//注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
         var data = obj.data;//获得当前行数据
@@ -156,17 +151,18 @@ layui.use(['element','table','form','laydate'],function () {
                     }
                 });
             });
-        } else if(obj.event === 'edit'){
+        }
+
+        else if (obj.event === 'edit') {
             /*调用函数： 数据回显*/
             getDormList(obj);
             getRoomList(obj);
             EidtUv(data);
-            index = layer.open({
-                type:1
-                ,area:['400px', '520px']
-                ,content:$("#scoForm")
+           var index = layer.open({
+                type: 1
+                , area: ['400px', '520px']
+                , content: $("#scoForm")
             });
-
         }
         function  EidtUv(data) {
             function  EidtUv(data) {
@@ -177,37 +173,6 @@ layui.use(['element','table','form','laydate'],function () {
             }
             form.render('select');
         }
-
-
-    });
-
-
-    /*监听表单提交按钮*/
-    form.on('submit(scoForm)',function (data) {
-        var url = '';
-        var tag = $("#recordTime").attr("readonly");
-        if(tag == 'readonly'){
-            url = '/dormManager/scoAdd';
-        }else {
-            url = '/dormManager/scoEdit';
-        }
-
-        $.ajax({
-            url:url,
-            data:data.field,
-            dataType:'JSON',
-            type:'post',
-            success:function (data) {
-                if (data.success){
-                    layer.close(index);
-                    layer.msg(data.msg);
-                    table.reload('scoreTable');
-                }else{
-                    layer.msg(data.msg);
-                }
-            }
-        });
-        return false;
     });
     ;})
 

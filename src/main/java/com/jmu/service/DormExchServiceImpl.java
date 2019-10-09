@@ -50,7 +50,7 @@ public class DormExchServiceImpl implements DormExchService {
     public AjaxRes updateChangeStatus(Exchange exchange) {
         AjaxRes ajaxRes = new AjaxRes();
         try {
-            exchangeMapper.updateByPrimaryKey(exchange);
+            exchangeMapper.updateChangeStatus(exchange);
             ajaxRes.setSuccess(true);
             ajaxRes.setMsg("状态已修改");
         }catch (Exception e){
