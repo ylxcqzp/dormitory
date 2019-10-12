@@ -1,15 +1,15 @@
 package com.jmu.web;
 
-import com.jmu.domain.AjaxRes;
-import com.jmu.domain.Manager;
-import com.jmu.domain.PageListRes;
-import com.jmu.domain.QueryVo;
+import com.jmu.domain.*;
 import com.jmu.service.ManagerService;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.xml.registry.infomodel.User;
 
 @Controller
 @RequestMapping("/stu_dorm_lib")
@@ -22,6 +22,14 @@ public class ManagerController {
     @RequiresPermissions("manager:index")
     public String manager(){
         return "/part/manager";
+    }
+
+    @RequestMapping("/getManager")
+    @ResponseBody
+    public Manager getManager(){
+        Manager user = (Manager) SecurityUtils.getSubject().getPrincipal();
+        System.out.println(user);
+        return user;
     }
 
     /*获取管理员列表：分页查询*/

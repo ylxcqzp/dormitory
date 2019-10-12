@@ -16,5 +16,5 @@ public interface ExchangeMapper {
 
     int updateHandleId(String managerId);
 
-    void updateChangeStatus(Exchange exchange);
+    int updateState(Exchange exchange);
 }

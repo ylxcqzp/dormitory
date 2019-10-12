@@ -57,7 +57,7 @@
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:;" class="site-url" data-title="考勤管理" data-id="1" data-url="/dormManager/score">考勤管理</a></dd>
                         <dd><a href="javascript:;" class="site-url" data-title="请假审批" data-id="2" data-url="/dormManager/leaveInfo">请假申请</a></dd>
-                        <dd><a href="javascript:;" class="site-url" data-title="宿舍调整" data-id="3" data-url="/dormExchange/showAllChange">宿舍调整</a></dd>
+                        <dd><a href="javascript:;" class="site-url" data-title="宿舍调整" data-id="3" data-url="/dormManager/exchange">宿舍调整</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">

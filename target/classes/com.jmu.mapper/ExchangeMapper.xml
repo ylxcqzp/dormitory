@@ -3,17 +3,17 @@
 <mapper namespace="com.jmu.mapper.ExchangeMapper">
   <resultMap id="BaseResultMap" type="com.jmu.domain.Exchange">
     <id column="exc_id" jdbcType="INTEGER" property="excId" />
-
     <result column="reason" jdbcType="VARCHAR" property="reason" />
     <result column="target_drom" jdbcType="VARCHAR" property="targetDrom" />
     <result column="target_room" jdbcType="VARCHAR" property="targetRoom" />
     <result column="state" jdbcType="BIT" property="state" />
-
     <association property="student" javaType="com.jmu.domain.Student">
       <result property="stuId" column="stu_id"/>
+      <result property="stuName" column="stu_name"/>
     </association>
     <association property="manager" javaType="com.jmu.domain.Manager">
       <result property="managerId" column="manager_id"/>
+      <result property="managerName" column="manager_name"/>
     </association>
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -38,10 +38,11 @@
       handle_id = #{handleId,jdbcType=VARCHAR}
     where exc_id = #{excId,jdbcType=INTEGER}
   </update>
-  <update id="updateHandleId" parameterType="java.lang.String">
+
+  <update id="updateState" parameterType="com.jmu.domain.Exchange">
     update exchange
-    set handle_id = null
-    where handle_id = #{managerId}
+    set state = #{state},handle_id = #{manager.managerId}
+    where exc_id = #{excId}
   </update>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -50,7 +51,13 @@
     where exc_id = #{excId,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select exc_id, stu_id, reason, target_drom, target_room, state, manager_id
-    from exchange
+    select exc_id, e.stu_id, s.stu_name, reason, target_drom, target_room, state, m.manager_id, m.manager_name
+    from exchange e
+    left join student s
+    on e.stu_id = s.stu_id
+    left join manager m
+    on e.handle_id = m.manager_id
   </select>
+
+
 </mapper>

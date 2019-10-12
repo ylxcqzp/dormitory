@@ -16,4 +16,8 @@ public interface StudentMapper {
     void updateByPrimaryKey(Student student);
 
     Student getStudentById(String stuId);
+
+    int updateDormAndRoom(@Param("stuId") String stuId,@Param("dorm") String dorm,@Param("room") String room);
+
+    String getRoomById(String stuId);
 }

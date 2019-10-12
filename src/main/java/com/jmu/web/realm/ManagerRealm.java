@@ -33,6 +33,7 @@ public class ManagerRealm extends AuthorizingRealm {
 
         /*查询当前角色拥有的权限*/
         if(manager.getRole().getRoleId()==1){
+            System.out.println("超级管理员");
             permissions.add("*:*");
         }else{
             /*获取权限*/

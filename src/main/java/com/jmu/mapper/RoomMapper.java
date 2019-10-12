@@ -14,4 +14,8 @@ public interface RoomMapper {
     List<Room> selectAll();
 
     int updateByPrimaryKey(Room record);
+
+    int addRoomUse(String roomId);
+
+    void subRoomUse(String roomId);
 }
