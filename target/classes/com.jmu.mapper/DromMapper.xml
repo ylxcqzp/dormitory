@@ -7,7 +7,7 @@
     <result column="drom_administ" jdbcType="VARCHAR" property="dromAdminist" />
 
     <association property="manager" javaType="com.jmu.domain.Manager">
-      <result property="managerId" column="manager_id"/>
+      <result property="managerId" column="administ_id"/>
     </association>
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
@@ -42,5 +42,11 @@
   <select id="selectAll" resultMap="BaseResultMap">
     select drom_id, drom_sex, drom_administ, administ_id
     from drom
+  </select>
+
+  <select id="selectBySex" resultMap="BaseResultMap">
+      select drom_id, drom_sex, drom_administ
+      from drom
+      where drom_sex = #{sex}
   </select>
 </mapper>

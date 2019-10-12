@@ -105,7 +105,7 @@
             <div class="musics"><embed src=mp3/m1_clip.mp3 autostart=true loop=true width=0 height=0></div>
         </li>
         <li class="nav-shopping">
-            <a href="new.html">
+            <a href="/views/student/studentExchange.html">
                 <span><img src="../.././layui/images/newimg.png" class="grayscale"></span>
                 <strong>
                     调换申请<br />

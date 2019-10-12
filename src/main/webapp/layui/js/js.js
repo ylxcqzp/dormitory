@@ -51,13 +51,13 @@ $(function(){
 		$(".kefu").animate({
 			left:"-200%",
 			})
-		})	
+		});
 	//navLast
 	$(".navLast a,.nav-News a").click(function(){
 		$(this).attr("href","#");
 		alert("暂未开放，敬请期待！")
-		})	
-	})	
+		})
+	})
 $(function(){
 	//下拉导航
 	$("nav li").hover(function(){

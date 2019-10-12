@@ -1,9 +1,8 @@
 package com.jmu.service;
 
-import com.jmu.domain.AjaxRes;
-import com.jmu.domain.Exchange;
-import com.jmu.domain.PageListRes;
-import com.jmu.domain.QueryVo;
+import com.jmu.domain.*;
+
+import java.util.List;
 
 public interface ExchangeService {
 
@@ -12,4 +11,10 @@ public interface ExchangeService {
     AjaxRes denyOption(Exchange exchange);
 
     AjaxRes agreeOption(Exchange exchange);
+
+    List<Drom> getDormList(String sex);
+
+    List<Room> getRoomList();
+
+    AjaxRes insert(Exchange exchange);
 }

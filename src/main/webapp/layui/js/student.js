@@ -59,7 +59,7 @@ layui.use(['element','table','form','laydate'], function(){
         $.ajax({
             url: '/getClassList',
             type: 'POST',
-            dataype: 'json',
+            dataType:'JSON',
             success: function (result) {
                 $('#aClass').html("<option value=''>请选择</option>");
                 $.each(result,function(index,item){

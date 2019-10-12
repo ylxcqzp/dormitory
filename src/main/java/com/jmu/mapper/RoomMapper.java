@@ -18,4 +18,8 @@ public interface RoomMapper {
     int addRoomUse(String roomId);
 
     void subRoomUse(String roomId);
+
+    Room selectByRidAndDid(@Param("roomId") String targetRoom,@Param("dromId") String targetDrom);
+
+    int getRoomUseByRid(String targetRoom);
 }

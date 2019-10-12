@@ -1,14 +1,13 @@
 package com.jmu.web;
 
-import com.jmu.domain.AjaxRes;
-import com.jmu.domain.Exchange;
-import com.jmu.domain.PageListRes;
-import com.jmu.domain.QueryVo;
+import com.jmu.domain.*;
 import com.jmu.service.ExchangeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/dormManager")
@@ -37,7 +36,9 @@ public class ExchangeController {
         }else {
             ajaxRes = exchangeService.agreeOption(exchange);
         }
-        /*AjaxRes ajaxRes = new AjaxRes();*/
         return ajaxRes;
     }
+
+
+
 }

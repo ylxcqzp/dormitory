@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>调换申请页面</title>
+    <link rel="stylesheet" href="../.././layui/css/layui.css" >
+    <script src="../.././layui/layui.all.js"></script>
+</head>
+<body>
+<form class="layui-form" id="form_reset">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">选择框</label>
+        <div class="layui-input-block">
+            <select id="targetDrom" name="targetDrom" lay-verify="required">
+                <option value="">请选择楼号</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">选择框</label>
+        <div class="layui-input-block">
+            <select id="targetRoom" name="targetRoom" lay-verify="required">
+                <option value="">请选择房间号</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">调换说明</label>
+        <div class="layui-input-block">
+            <textarea name="reason" placeholder="请输入调换原因" class="layui-textarea"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formExchange">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+<script>
+    layui.use(['element','table','form'], function(){
+        var form = layui.form
+        ,$ = layui.jquery;
+        form.render();
+        /*获取登录用户*/
+
+        $(function () {
+            var user = '你好';
+            $.ajax({
+                url:'/student/getUser',
+                dataType:'JSON',
+                type:'post',
+                async:false,
+                success:function (data) {
+                    user = data;
+                }
+            });
+
+            /*获取楼号下拉列表*/
+            $.ajax({
+                url:'/student/getDormList?sex='+user.stuSex,
+                type: 'POST',
+                dataType: 'JSON',
+                success:function (result) {
+                    $("#targetDrom").html("<option value=''>请选择楼号</option>");
+                    $.each(result,function(index,item){
+                        $('#targetDrom').append("<option value='"+item.dromId+"'>"+item.dromId+"</option>");
+                    });
+                    form.render();//菜单渲染 把内容加载进去
+                }
+            });
+            /*获取宿舍号*/
+            $.ajax({
+                url:'/student/getRoomList',
+                type: 'POST',
+                dataType: 'JSON',
+                success:function (result) {
+                    $("#targetRoom").html("<option value=''>请选择房间号</option>");
+                    $.each(result,function(index,item){
+                        $('#targetRoom').append("<option value='"+item.roomId+"'>"+item.roomId+"</option>");
+                    });
+                    form.render();//菜单渲染 把内容加载进去
+                }
+            });
+
+            /*表单提交监听*/
+            form.on('submit(formExchange)', function(data){
+                data.field.stuId = user.stuId;
+                console.log(data.field);
+                $.ajax({
+                    url:'/student/exchangeSubmit',
+                    data:data.field,
+                    type: 'POST',
+                    dataType: 'JSON',
+                    success:function (result) {
+                        if(result.success){
+                            layer.msg(result.msg);
+                        }else {
+                            layer.msg(result.msg);
+                        }
+                    }
+                });
+                return false;
+            });
+
+        });
+
+
+
+
+    });
+</script>
+<!--<script src="../../layui/js/studentExchange.js"></script>-->
+</body>
+</html>

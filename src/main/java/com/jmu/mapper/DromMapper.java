@@ -15,4 +15,6 @@ public interface DromMapper {
     int updateByPrimaryKey(Drom record);
 
     int updateAdminId(String managerId);
+
+    List<Drom> selectBySex(String sex);
 }

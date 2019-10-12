@@ -2,12 +2,11 @@ package com.jmu.service;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageRowBounds;
 import com.jmu.domain.*;
+import com.jmu.mapper.DromMapper;
 import com.jmu.mapper.ExchangeMapper;
 import com.jmu.mapper.RoomMapper;
 import com.jmu.mapper.StudentMapper;
-import net.sf.ehcache.transaction.xa.EhcacheXAException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +16,8 @@ import java.util.List;
 @Service
 @Transactional
 public class ExchangeServiceImpl implements ExchangeService {
+    @Autowired
+    private DromMapper dromMapper;
     @Autowired
     private RoomMapper roomMapper;
     @Autowired
@@ -68,6 +69,51 @@ public class ExchangeServiceImpl implements ExchangeService {
         }catch (Exception e){
             ajaxRes.setSuccess(false);
             ajaxRes.setMsg("修改失败");
+            e.printStackTrace();
+        }
+
+        return ajaxRes;
+    }
+
+    @Override
+    public List<Drom> getDormList(String sex) {
+        List<Drom> droms = dromMapper.selectBySex(sex);
+        for (Drom drom : droms) {
+            System.out.println(drom);
+        }
+        return droms;
+    }
+
+    @Override
+    public List<Room> getRoomList() {
+        List<Room> rooms = roomMapper.selectAll();
+        return rooms;
+    }
+
+    @Override
+    public AjaxRes insert(Exchange exchange) {
+        AjaxRes ajaxRes = new AjaxRes();
+        String targetDrom = exchange.getTargetDrom();
+        String targetRoom = exchange.getTargetRoom();
+        Room room = roomMapper.selectByRidAndDid(targetRoom,targetDrom);
+        int use = roomMapper.getRoomUseByRid(targetRoom);
+        if(room == null){
+            ajaxRes.setSuccess(false);
+            ajaxRes.setMsg("该房间未启用，请重新选择");
+            return ajaxRes;
+        }
+        if (use >= 6){
+            ajaxRes.setSuccess(false);
+            ajaxRes.setMsg("该房间人员已满");
+            return ajaxRes;
+        }
+        try {
+            exchangeMapper.insert(exchange);
+            ajaxRes.setSuccess(true);
+            ajaxRes.setMsg("提交成功");
+        }catch (Exception e){
+            ajaxRes.setSuccess(false);
+            ajaxRes.setMsg("提交失败");
             e.printStackTrace();
         }
 

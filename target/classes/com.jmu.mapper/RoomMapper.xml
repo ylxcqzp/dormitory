@@ -50,4 +50,16 @@
     select room_id, drom_id, room_sum, room_use
     from room
   </select>
+
+  <select id="selectByRidAndDid" resultMap="BaseResultMap">
+    select room_id, drom_id, room_sum, room_use
+    from room
+    where room_id = #{roomId} and drom_id = #{dromId}
+  </select>
+
+  <select id="getRoomUseByRid" resultType="java.lang.Integer">
+    select room_use
+    from room
+    where room_id = #{targetRoom}
+  </select>
 </mapper>

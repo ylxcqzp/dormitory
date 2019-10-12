@@ -24,9 +24,9 @@
     insert into exchange (exc_id, stu_id, reason, 
       target_drom, target_room, state, 
       handle_id)
-    values (#{excId,jdbcType=INTEGER}, #{stuId,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR}, 
+    values (#{excId,jdbcType=INTEGER}, #{student.stuId,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR},
       #{targetDrom,jdbcType=VARCHAR}, #{targetRoom,jdbcType=VARCHAR}, #{state,jdbcType=BIT}, 
-      #{handleId,jdbcType=VARCHAR})
+      #{manager.managerId,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.jmu.domain.Exchange">
     update exchange
@@ -44,11 +44,7 @@
     set state = #{state},handle_id = #{manager.managerId}
     where exc_id = #{excId}
   </update>
-  <update id="updateChangeStatus" parameterType="com.jmu.domain.Exchange">
-    update exchange
-    set state = #{state},
-    where exc_id = #{excId}
-  </update>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select exc_id, stu_id, reason, target_drom, target_room, state, handle_id
     from exchange
@@ -62,6 +58,7 @@
     left join manager m
     on e.handle_id = m.manager_id
   </select>
+
 
 
 </mapper>
