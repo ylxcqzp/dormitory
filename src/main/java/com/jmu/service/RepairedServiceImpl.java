@@ -62,4 +62,21 @@ public class RepairedServiceImpl implements RepairedService {
         }
         return ajaxRes;
     }
+
+
+    @Override
+    public AjaxRes insertRepairs(Repaires repaires) {
+        AjaxRes ajaxRes = new AjaxRes();
+       try {
+           repairesMapper.insert(repaires);
+           ajaxRes.setSuccess(true);
+           ajaxRes.setMsg("插入成功！");
+       }
+       catch (Exception e){
+           e.printStackTrace();
+           ajaxRes.setSuccess(false);
+           ajaxRes.setMsg("插入失败！");
+       }
+       return ajaxRes;
+    }
 }

@@ -4,7 +4,7 @@ layui.use(['element','table','form','laydate'],function () {
         ,form = layui.form
         ,laydate = layui.laydate
         ,$ = layui.jquery;
-
+    var index;
     /*日期渲染*/
     laydate.render({
         elem: '#recordTime'
@@ -49,7 +49,6 @@ layui.use(['element','table','form','laydate'],function () {
 
     /*获取所有宿舍信息，渲染班级下拉框*/
     function getDormList(obj) {
-
         $.ajax({
             url: '/dormManager/getDormList',
             type: 'POST',
@@ -101,27 +100,22 @@ layui.use(['element','table','form','laydate'],function () {
         switch(obj.event){
             case 'AddSco':
                 $('#form_reset')[0].reset();
-                $('#scorePoint').attr("readonly",false);
-                $('#recordTime').attr("readonly",true);
+                $('#scoreId').attr("readonly",false);
+                $('#scorePoint');
+                $('#recordTime');
                 $("#Drom").val("请选择");
                 getDormList(obj);
                 $("#Room").val("请选择");
                 getRoomList(obj);
                 form.render();
                 /*打开表单*/
-                var index = layer.open({
+                index = layer.open({
                     type: 1
                     , area: ['400px', '520px']
                     , content: $("#scoForm")
                 });
                 break;
-            case 'reload'://刷新数据表格
-                table.reload('scoreTable', {
-                    where: {
-                        keyword: ""
-                    }
-                });
-                break;
+
             //自定义头工具栏右侧图标 - 提示
             case 'LAYTABLE_TIPS':
                 layer.alert('这是工具栏右侧自定义的一个图标按钮');
@@ -144,7 +138,6 @@ layui.use(['element','table','form','laydate'],function () {
                         if (data.success){
                             obj.del();
                             layer.msg(data.msg);
-                            /*table.reload('stuTable');*/
                         }else{
                             layer.msg(data.msg);
                         }
@@ -152,27 +145,63 @@ layui.use(['element','table','form','laydate'],function () {
                 });
             });
         }
-
         else if (obj.event === 'edit') {
             /*调用函数： 数据回显*/
             getDormList(obj);
             getRoomList(obj);
+            $('#scoreId').attr("readonly",true);
             EidtUv(data);
-           var index = layer.open({
+            index = layer.open({
                 type: 1
                 , area: ['400px', '520px']
                 , content: $("#scoForm")
             });
         }
         function  EidtUv(data) {
-            function  EidtUv(data) {
-                $("#scorePoint").val(data.scorePoint);
-                $("#recordTime").val(data.recordTime);
-                $("#scoForm").val(data.scoForm);
-                form.render('select');
-            }
+            $("#scorePoint").val(data.scorePoint);
+            $("#recordTime").val(data.recordTime);
+            $("#scoForm").val(data.scoForm);
             form.render('select');
+
         }
     });
-    ;})
+    form.on('submit(addForm)', function(data){
+
+        $.ajax({
+            url:'/dormManager/scoAdd',
+            data:data.field,
+            dataType:'JSON',
+            type:'post',
+            success:function (data) {
+                if (data.success){
+
+                    layer.msg(data.msg);
+                    table.reload('scoreTable');
+                }else{
+                    layer.msg(data.msg);
+                }
+            }
+        });
+        return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+    });
+    form.on('submit(editForm)', function(data){
+        $.ajax({
+            url:'/dormManager/scoEdit',
+            data:data.field,
+            dataType:'JSON',
+            type:'post',
+            success:function (data) {
+                if (data.success){
+                    layer.msg(data.msg);
+                    table.reload('scoreTable');
+                }else{
+                    layer.msg(data.msg);
+                }
+            }
+        });
+        return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+    });
+
+});
+
 

@@ -59,4 +59,20 @@ public class LeaveInfoServiceImpl implements LeaveInfoService {
         }
         return ajaxRes;
     }
+
+    @Override
+    public AjaxRes insert(LeaveInfo leaveInfo) {
+        AjaxRes ajaxRes = new AjaxRes();
+        try {
+            leaveInfoMapper.insert(leaveInfo);
+            ajaxRes.setSuccess(true);
+            ajaxRes.setMsg("提交成功");
+        }catch (Exception e){
+            e.printStackTrace();
+            ajaxRes.setSuccess(false);
+            ajaxRes.setMsg("提交失败");
+        }
+
+        return ajaxRes;
+    }
 }

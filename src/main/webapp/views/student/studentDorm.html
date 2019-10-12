@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../.././layui/css/layui.css" >
+    <script src="../.././layui/layui.all.js"></script>
+</head>
+<body>
+<form class="layui-form" id="form_reset">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">选择框</label>
+        <div class="layui-input-block">
+            <select id="targetDrom" name="drom.dromId" lay-verify="required">
+                <option value="">请选择楼号</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">选择框</label>
+        <div class="layui-input-block">
+            <select id="targetRoom" name="room.roomId" lay-verify="required">
+                <option value="">请选择房间号</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">保修原因</label>
+        <div class="layui-input-block">
+            <textarea name="detail" placeholder="请输入调换原因" class="layui-textarea"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formRepairs">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+</body>
+<script>
+    //Demo
+    layui.use(['element','table','form','laydate'], function(){
+        var form = layui.form
+            ,$ = layui.$
+            ,laydate = layui.laydate;
+
+        form.render();
+        /*日期渲染*/
+        laydate.render({
+            elem: '#leaveDate'
+            ,format: 'yyyy-MM-dd' //可任意组合
+            ,theme: 'grid'
+            ,trigger: 'click'
+        });
+        laydate.render({
+            elem: '#backDate'
+            ,format: 'yyyy-MM-dd' //可任意组合
+            ,theme: 'grid'
+            ,trigger: 'click'
+        });
+
+
+        $(function () {
+            var user = '';
+            $.ajax({
+                url:'/student/getUser',
+                dataType:'JSON',
+                type:'post',
+                async:false,
+                success:function (data) {
+                    user = data;
+                }
+            });
+
+
+            /*表单提交监听*/
+            form.on('submit(formLeave)', function(data){
+                data.field.stuId = user.stuId;
+                console.log(data.field);
+                $.ajax({
+                    url:'/student/leaveSubmit',
+                    data:data.field,
+                    type: 'POST',
+                    dataType: 'JSON',
+                    success:function (result) {
+                        if(result.success){
+                            layer.msg(result.msg);
+                        }else {
+                            layer.msg(result.msg);
+                        }
+                    }
+                });
+                return false;
+            });
+
+        });
+    });
+</script>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../.././layui/css/layui.css" >
+    <script src="../.././layui/layui.all.js"></script>
+</head>
+<body>
+<form class="layui-form" action="">
+
+
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">请假理由</label>
+        <div class="layui-input-block">
+            <textarea name="reasons" placeholder="请输入内容" class="layui-textarea"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">离校时间</label>
+        <div class="layui-input-block">
+            <input type="text" name="leaveDate" id="leaveDate" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+        </div>
+    </div>  <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">返校时间</label>
+        <div class="layui-input-block">
+            <input type="text" name="backDate" id="backDate" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formLeave">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+<script>
+    //Demo
+    layui.use(['element','table','form','laydate'], function(){
+        var form = layui.form
+            ,$ = layui.$
+            ,laydate = layui.laydate;
+
+        form.render();
+        /*日期渲染*/
+        laydate.render({
+            elem: '#leaveDate'
+            ,format: 'yyyy-MM-dd' //可任意组合
+            ,theme: 'grid'
+            ,trigger: 'click'
+        });
+        laydate.render({
+            elem: '#backDate'
+            ,format: 'yyyy-MM-dd' //可任意组合
+            ,theme: 'grid'
+            ,trigger: 'click'
+        });
+
+
+        $(function () {
+            var user = '';
+            $.ajax({
+                url:'/student/getUser',
+                dataType:'JSON',
+                type:'post',
+                async:false,
+                success:function (data) {
+                    user = data;
+                }
+            });
+
+
+            /*表单提交监听*/
+            form.on('submit(formLeave)', function(data){
+                data.field.stuId = user.stuId;
+                console.log(data.field);
+                $.ajax({
+                    url:'/student/leaveSubmit',
+                    data:data.field,
+                    type: 'POST',
+                    dataType: 'JSON',
+                    success:function (result) {
+                        if(result.success){
+                            layer.msg(result.msg);
+                        }else {
+                            layer.msg(result.msg);
+                        }
+                    }
+                });
+                return false;
+            });
+
+        });
+    });
+</script>
+
+</body>
+</html>

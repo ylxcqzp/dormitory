@@ -20,10 +20,10 @@
   </delete>
   <insert id="insert" parameterType="com.jmu.domain.Repaires">
     insert into repaires (repairs_id, drom_id, room_id,
-    detail, gettime, fixtime,
+    detail, fixtime,
       isfixed)
-    values (#{repairsId,jdbcType=INTEGER}, #{drom_id,jdbcType=VARCHAR}, #{roomId,jdbcType=VARCHAR},
-      #{detail,jdbcType=VARCHAR}, #{gettime,jdbcType=TIMESTAMP}, #{fixtime,jdbcType=TIMESTAMP},
+    values (#{repairsId,jdbcType=INTEGER}, #{drom.dromId,jdbcType=VARCHAR}, #{room.roomId,jdbcType=VARCHAR},
+      #{detail,jdbcType=VARCHAR}, #{fixtime,jdbcType=TIMESTAMP},
       #{isfixed,jdbcType=BIT})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.jmu.domain.Repaires">

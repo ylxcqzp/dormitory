@@ -54,8 +54,7 @@ $(function(){
 		});
 	//navLast
 	$(".navLast a,.nav-News a").click(function(){
-		$(this).attr("href","#");
-		alert("暂未开放，敬请期待！")
+
 		})
 	})
 $(function(){

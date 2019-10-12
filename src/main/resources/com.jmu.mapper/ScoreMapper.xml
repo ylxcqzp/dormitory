@@ -20,7 +20,7 @@
     insert into score (score_point, record_time,
       drom_id, room_id)
     values ( #{scorePoint,jdbcType=INTEGER}, #{recordTime,jdbcType=TIMESTAMP},
-      #{dromId,jdbcType=VARCHAR}, #{roomId,jdbcType=VARCHAR})
+      #{drom.dromId,jdbcType=VARCHAR}, #{room.roomId,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.jmu.domain.Score">
     update score

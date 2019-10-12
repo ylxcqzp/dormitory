@@ -22,19 +22,17 @@
 </div>--%>
 <script type="text/html" id="toolbarSco">
     <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm3" lay-event="DelSco">删除</button>
         <button class="layui-btn layui-btn-sm3" lay-event="AddSco">增加</button>
     </div>
     <%-- <select name="dorm.dromId" id="dorm" lay-verify="scoreDorm" lay-reqText="请选择一个楼号" lay-filter="dormNum">
          <option value="">请选择楼号</option>
      </select>--%>
- </script>
- <script type="text/html" id="scoreOption">
-     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
- </script>
+</script>
+<script type="text/html" id="scoreOption">
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
 
- <%--宿舍评分表--%>
+<%--宿舍评分表--%>
 <div id="scoreTable" lay-filter="scoreTable"></div>
 <script src="../.././layui/js/score.js"></script>
 <%--增加表单--%>
@@ -71,24 +69,14 @@
             </div>
             <div class="layui-form-item" style="margin-top:40px">
                 <div class="layui-input-block">
-                    <button class="layui-btn  layui-btn-submit " lay-submit lay-filter="scoForm">确认</button>
+                    <button class="layui-btn  layui-btn-submit " lay-submit lay-filter="addForm" id="scoAdd">添加</button>
+                    <button class="layui-btn  layui-btn-submit " lay-submit lay-filter="editForm" id="scoEdit">编辑</button>
                     <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
-<div class="layui-row" id="sco" style="display:none;">
-    <div class="layui-col-md10">
-        <form class="layui-form layui-from-pane" id="scoEdit" lay-filter="scoForm" style="margin-top:20px">
-            <div class="layui-form-item">
-                <label class="layui-form-label">得分</label>
-                <div class="layui-input-block">
-                    <input type="text"  name="scorePoint" id="scorePoint" lay-verify="required|number" autocomplete="off" placeholder="请输入得分" class="layui-input">
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
+
 </body>
 </html>

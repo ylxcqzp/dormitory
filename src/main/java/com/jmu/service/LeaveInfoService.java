@@ -13,4 +13,6 @@ public interface LeaveInfoService {
     AjaxRes updateState(LeaveInfo leaveInfo);
 
     AjaxRes deleteLeaveInfById(Integer leaveId);
+
+    AjaxRes insert(LeaveInfo leaveInfo);
 }

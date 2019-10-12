@@ -18,10 +18,10 @@
     where leave_id = #{leaveId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.jmu.domain.LeaveInfo">
-    insert into leave_info (leave_id, stu_id, create_time, 
+    insert into leave_info (leave_id, stu_id,
       leave_date, back_date, state
       )
-    values (#{leaveId,jdbcType=INTEGER}, #{stuId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+    values (#{leaveId,jdbcType=INTEGER}, #{student.stuId,jdbcType=VARCHAR},
       #{leaveDate,jdbcType=TIMESTAMP}, #{backDate,jdbcType=TIMESTAMP}, #{state,jdbcType=BIT}
       )
   </insert>

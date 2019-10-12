@@ -85,7 +85,7 @@
             <div class="musics"><embed src=mp3/m1_clip.mp3 autostart=true loop=true width=0 height=0></div>
         </li>
         <li class="nav-Products">
-            <a href="product.html">
+            <a href="/views/student/studentDorm.html">
                 <span><img src="../.././layui/images/productimg.png" class="grayscale"></span>
                 <strong>
                     宿舍信息<br />
@@ -95,7 +95,7 @@
             <div class="musics"><embed src=mp3/m1_clip.mp3 autostart=true loop=true width=0 height=0></div>
         </li>
         <li class="nav-News">
-            <a href="shopping.html">
+            <a href="/views/student/studentLeave.html">
                 <span><img src="../.././layui/images/shopimg.png" class="grayscale"></span>
                 <strong>
                     请假申请<br />
@@ -115,7 +115,7 @@
             <div class="musics"><embed src=mp3/m1_clip.mp3 autostart=true loop=true width=0 height=0></div>
         </li>
         <li class="nav-Contact">
-            <a href="/views/student/studentRepaired.html">
+            <a href="/views/student/studentRepairs.html">
                 <span><img src="../.././layui/images/contactimg.png" class="grayscale"></span>
                 <strong>
                     报修<br />

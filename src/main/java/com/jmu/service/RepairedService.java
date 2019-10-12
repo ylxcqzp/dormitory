@@ -11,4 +11,7 @@ public interface RepairedService {
     AjaxRes deleteRepairById(Integer repairsId);
 
     AjaxRes updateRepairStatus(Repaires repaires);
+
+
+    AjaxRes insertRepairs(Repaires repaires);
 }
