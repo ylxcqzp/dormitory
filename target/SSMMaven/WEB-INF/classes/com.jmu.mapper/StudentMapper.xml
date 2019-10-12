@@ -62,6 +62,12 @@
     where stu_id = #{stuId}
   </update>
 
+  <update id="updateDormAndRoom" parameterType="java.lang.String">
+    update student
+    set drom_id = #{dorm},room_id = #{room}
+    where stu_id = #{stuId}
+  </update>
+
   <sql id="where_sql">
     <where>
       <if test="keyword !=null and keyword!=''">
@@ -84,5 +90,11 @@
     select stu_id,stu_name,password,stu_sex
     from student
     where stu_id=#{stuId}
+  </select>
+
+  <select id="getRoomById" parameterType="java.lang.String">
+    select room_id
+    from student
+    where stu_id = #{stuId}
   </select>
 </mapper>

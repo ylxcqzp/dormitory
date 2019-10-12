@@ -1,0 +1,123 @@
+@charset "utf-8";
+/* CSS Document */
+/*此样式在窗口小于1440的时候生效*/
+@media screen and (max-width: 1440px) {
+/*重新定义*/
+.MID-TWO{width:940px;}
+.imgBox img{width:220px; height:auto !important;}
+.scrollpic{width:800px;}
+#mybtns{ width:110%;left:-60px;}
+#myscroll{height:400px;}
+/*产品*/
+.body3 .imgBox img{width:220px; height:auto !important;}
+.body3 .scrollpic{width:750px;min-height:300px;}
+.body3 #mybtns{ width:116%;left:-70px;}
+.body3 #myscroll{height:300px;}
+/*新闻*/
+.MID-TWP-New table img{width:250px; height:auto !important;}
+.MID-TWP-New .scrollpic{width:750px;min-height:500px;margin-top:150px;}
+.MID-TWP-New #mybtns{ width:116%;left:-70px;}
+.MID-TWP-New #myscroll{height:500px;}
+.closeNew{ position:static; position:absolute;left:76%;top:7px;}
+.newRight{width:500px;}
+.NEW-FIRST #myscrollbox li{width:265px}
+.about-xian .imgBox img{width:232px;}
+}
+/*此样式在窗口小于1048的时候生效*/
+@media screen and (max-width: 1048px) {
+/*重新定义*/
+#body2 .LEFT{ position:fixed;width:100%;height:40px;z-index:999;}
+#body2 .LEFT .LEFT-s{ height:40px;}
+#body2 .MID{width:100%;padding-top:80px;}
+#body2 .Title{margin-top:20px;}
+#body2 .logo{float:left;padding:0;width:90px;}
+#body2 .logo img{ height:30px;width:auto !important;}
+#body2 .Language{width:120px; float:right;margin:0;padding:0;height:40px;line-height:12px;}
+#body2 .Language img{ display:none;}
+#body2 footer{ display:none;}
+#body2 nav{position:fixed;top:40px;background:#191919;width:100%;}
+#body2 nav li{width:20%;float:left; background:none;}
+#body2 nav li a{ background:none;width:100%;height:35px;line-height:35px;}
+#body2 nav li a:hover{}
+#body2 nav li .chilNav{left:0;top:35px;width:100%;}
+#body2 nav li .chilNav a{ background:#000;width:100%;color:#999;}
+#body2 nav li .chilNav a span{ display:none;}
+#body2 nav li .chilNav a:hover{color:#900; background:#ccc;}
+#body2 nav .chilNav a:hover,nav .chilNav .chilNavCur{color:#900; background:#ccc;}
+#body2 .footer2{ display:block;}
+}
+
+/*此样式在窗口小于850的时候生效*/
+@media screen and (max-width: 850px) {/*1024*768*/
+/*此部分原先在窗口小于850下面*/
+/*重新定义*/
+.LEFT-s{ position:static;}
+.navChilNavBg{ display:none;left:-1000%;top:-1000%;}
+.LEFT{ position:fixed;width:100%;height:40px;}
+.MID{width:100%;padding-top:80px;}
+.Title{margin-top:20px;}
+.logo{float:left;padding:0;width:90px;}
+.logo img{ height:30px;width:auto !important;}
+.Language{width:120px; float:right;margin:0;padding:0;height:40px;line-height:12px;}
+.Language img{ display:none;}
+footer{ display:none;}
+nav{position:fixed;top:40px;background:#191919;width:100%;}
+nav li{width:20%;float:left; background:none;}
+nav li a{ background:none;width:100%;height:35px;line-height:35px;}
+nav li a:hover{}
+nav li .chilNav{left:0;top:35px;width:100%;}
+nav li .chilNav a{ background:#000;width:100%;color:#999;}
+nav li .chilNav a span{ display:none;}
+nav li .chilNav a:hover{color:#900; background:#ccc;}
+nav .chilNav a:hover,nav .chilNav .chilNavCur{color:#900; background:#ccc;}
+.footer2{ display:block;}
+
+/*重新定义*/
+.MID-TWO{width:100%;}
+.about-xian li{width:235px}
+.imgBox img{width:220px; height:auto !important;}
+.scrollpic{width:250px; min-height:400px;margin-top:150px;}
+#mybtns{ width:140%;left:-60px;}
+#myscroll{height:400px;}
+
+/*产品*/
+.body3 .imgBox img{width:220px; height:auto !important;}
+.body3 .scrollpic{width:250px;min-height:270px;margin-top:200px;}
+.body3 #mybtns{ width:140%;left:-60px;top:20%;}
+.body3 #myscroll{height:270px;}
+
+/*新闻*/
+.MID-TWP-New .scrollpic{margin-top:150px;}
+.MID-TWP-New table,.MID-TWO.MID-TWP-New li{width:245px;}
+.MID-TWP-New #mybtns{width:150%;left:-70px;}
+.newLeft{width:1px;}
+.newLeft img{ display:none;}
+.newRight{width:254px;padding:0;}
+.newParSroll{padding:10px 0;}
+.newPar{ overflow-y:scroll;height:280px;padding:10px;}
+.NEW-FIRST .scrollpic{margin-top:120px;}
+.NEW-FIRST #myscroll{margin-bottom:30px;}
+/*contact*/
+#dituContent{width:320px;height:300px;}
+.NEW-FIRST .scrollpic,.about-xian .scrollpic,.MID-TWO.MID-TWP-New .scrollpic{margin-top:35%;}
+.about-xian .imgBox img{width:219px;}
+.closeNew{ position:static; position:absolute;left:82%;top:7px;}
+
+}
+
+/*此样式在窗口小于768的时候生效*/
+@media screen and (max-width: 768px) {/*768*1280*/
+
+}
+/*此样式在窗口小于640的时候生效*/
+@media screen and (max-width: 640px) {/*640*960*/
+.ParBox{width:97%}
+.ParBox img{width:40%; height: auto !important;}
+}
+
+/*此样式在窗口小于480的时候生效*/
+@media screen and (max-width: 480px) {/*320*480*/
+nav li a{ font-size:1em;}
+}
+
+

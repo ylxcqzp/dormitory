@@ -27,6 +27,19 @@
     where room_id = #{roomId,jdbcType=VARCHAR}
       and drom_id = #{dromId,jdbcType=VARCHAR}
   </update>
+
+  <!--宿舍人数加1-->
+  <update id="addRoomUse">
+    update room
+    set room_use = room_use + 1
+    where room_id = #{roomId}
+  </update>
+
+  <update id="subRoomUse">
+    update room
+    set room_use = room_use - 1
+    where room_id = #{roomId}
+  </update>
   <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
     select room_id, drom_id, room_sum, room_use
     from room
