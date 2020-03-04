@@ -29,7 +29,7 @@
     <!-- mybatis版本号 -->
     <mybatis.version>3.4.0</mybatis.version>
     <!-- jackson版本号 -->
-    <jackson.verson>2.9.4</jackson.verson>
+    <jackson.verson>2.10.3</jackson.verson>
     <!-- junit -->
     <junit-version>4.12</junit-version>
     <!-- cglib -->
