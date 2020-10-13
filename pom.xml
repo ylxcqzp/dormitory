@@ -31,7 +31,7 @@
     <!-- jackson版本号 -->
     <jackson.verson>2.9.4</jackson.verson>
     <!-- junit -->
-    <junit-version>4.12</junit-version>
+    <junit-version>4.13.1</junit-version>
     <!-- cglib -->
     <cglib-version>3.2.2</cglib-version>
     <!-- log4j日志文件管理包版本 -->
