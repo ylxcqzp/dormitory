@@ -27,7 +27,7 @@
     <!-- spring版本号 -->
     <spring.version>5.0.7.RELEASE</spring.version>
     <!-- mybatis版本号 -->
-    <mybatis.version>3.4.0</mybatis.version>
+    <mybatis.version>3.5.6</mybatis.version>
     <!-- jackson版本号 -->
     <jackson.verson>2.9.4</jackson.verson>
     <!-- junit -->
