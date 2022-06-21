@@ -19,7 +19,7 @@
     <!-- jstl jar包 -->
     <jstl.version>1.2</jstl.version>
     <!-- mysql-connector包 -->
-    <mysql.version>8.0.16</mysql.version>
+    <mysql.version>8.0.28</mysql.version>
     <!-- commons-dbcp -->
     <dbcp.version>1.4</dbcp.version>
     <!-- mybatis-spring整合包 -->
@@ -280,7 +280,7 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <!--<scope>provided</scope>-->
-            <version>8.0.16</version>
+            <version>8.0.28</version>
           </dependency>
         </dependencies>
       </plugin>
